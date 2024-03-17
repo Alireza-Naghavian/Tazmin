@@ -2,15 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import Large_Text_Field from "../../ui/Large_Text_Field";
 import LargeBtn from "../../ui/LargeBtn";
-function SendOtpForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const sendOtpHandler = (data) => {
-    console.log(data);
-  };
+function SendOtpForm({sendOtpHandler,register,errors}) {
   return (
     <div className="flex flex-col justify-center gap-8">
       <div className="flex flex-wrap justify-start">
@@ -19,7 +11,7 @@ function SendOtpForm() {
         </span>
       </div>
       <form
-        onSubmit={handleSubmit(sendOtpHandler)}
+        onSubmit={sendOtpHandler}
         className="flex flex-col gap-y-12"
       >
         <Large_Text_Field
