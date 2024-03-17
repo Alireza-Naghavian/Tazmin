@@ -27,3 +27,11 @@
     font-display: swap;
   }
 }
+@layer components{
+  .largeBtn{
+    @apply w-full inline-flex items-center justify-center font-DanaMedium py-3 px-4 
+  }
+  .tr-300{
+    @apply transition-all duration-300 
+  }
+}
