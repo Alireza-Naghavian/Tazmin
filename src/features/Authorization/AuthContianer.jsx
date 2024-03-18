@@ -3,23 +3,28 @@ import Auth from "../../pages/Auth";
 import SendOtpForm from "./SendOtpForm";
 import CheckOtpForm from "./CheckOtpForm";
 import { useForm } from "react-hook-form";
+import useSendOtp from "./hooks/useSendOtp";
+
 
 function AuthContianer() {
   const [step, setStep] = useState(1);
+  const {isSendLoading,sendUserOtp} = useSendOtp();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const sendOtpHandler = (data) => {
-    console.log(data);
+    sendUserOtp(data,{onSuccess:()=>{
+      setStep(2)
+    }})
   };
   const renderStep = () => {
     switch (step) {
       case 1:
         return (
           <Auth>
-            <SendOtpForm register={register} errors={errors} sendOtpHandler={handleSubmit(sendOtpHandler)}/>
+            <SendOtpForm isSendLoading={isSendLoading} register={register} errors={errors} sendOtpHandler={handleSubmit(sendOtpHandler)}/>
           </Auth>
         );
         case 2: 

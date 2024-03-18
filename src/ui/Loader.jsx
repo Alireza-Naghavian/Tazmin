@@ -1,6 +1,6 @@
 import React from 'react'
-import {Bars, LineWave} from "react-loader-spinner"
-function Loader({width = "60",height="40",mt,color="rgb(74 109 255)"}) {
+import {Bars} from "react-loader-spinner"
+function Loader({width = "60",height="40",mt="",color="rgb(74 109 255)"}) {
   return (
     <Bars
     visible={true}

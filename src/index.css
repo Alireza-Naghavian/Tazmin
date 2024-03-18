@@ -34,5 +34,8 @@
   .tr-300{
     @apply transition-all duration-300 
   }
- 
+}
+.Toastify__toast--rtl {
+  direction: rtl !important;
+  text-align: center !important;
 }

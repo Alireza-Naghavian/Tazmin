@@ -2,7 +2,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import Large_Text_Field from "../../ui/Large_Text_Field";
 import LargeBtn from "../../ui/LargeBtn";
-function SendOtpForm({sendOtpHandler,register,errors}) {
+import Loader from "../../ui/Loader";
+function SendOtpForm({ sendOtpHandler, register, errors, isSendLoading }) {
   return (
     <div className="flex flex-col justify-center gap-8">
       <div className="flex flex-wrap justify-start">
@@ -10,10 +11,7 @@ function SendOtpForm({sendOtpHandler,register,errors}) {
           ثبت نام/ورود
         </span>
       </div>
-      <form
-        onSubmit={sendOtpHandler}
-        className="flex flex-col gap-y-12"
-      >
+      <form onSubmit={sendOtpHandler} className="flex flex-col gap-y-12">
         <Large_Text_Field
           label={"لطفا شماره موبایل خود را وارد کنید"}
           placeholder={"مثلا:۰۹۱۲۱۲۳۴۵۶۷"}
@@ -30,7 +28,13 @@ function SendOtpForm({sendOtpHandler,register,errors}) {
           required
           errors={errors}
         />
-        <LargeBtn type={"submit"}>ادامه</LargeBtn>
+        <LargeBtn type={"submit"}>
+          {isSendLoading ? (
+            <Loader height="26" color="rgb(255,255,255)" />
+          ) : (
+            "ادامه"
+          )}
+        </LargeBtn>
       </form>
     </div>
   );
