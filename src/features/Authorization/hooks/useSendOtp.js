@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { sendOtp } from "../../../services/AuthServices";
+import {  sendOtpApi } from "../../../services/AuthServices";
 import { toast } from "react-toastify";
 const useSendOtp = () => {
   const {
@@ -8,7 +8,7 @@ const useSendOtp = () => {
     isPending: isSendLoading,
   } = useMutation({
     mutationKey: ["user"],
-    mutationFn: sendOtp,
+    mutationFn: sendOtpApi,
     onSuccess: (data) => {
       toast.success(data.message, {
         position: "top-right",

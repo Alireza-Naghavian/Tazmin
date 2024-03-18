@@ -3,12 +3,36 @@ import { useForm } from "react-hook-form";
 import OtpInput from "react-otp-input";
 import LargeBtn from "../../ui/LargeBtn";
 import Loader from "../../ui/Loader";
-function CheckOtpForm({ setStep }) {
-  const { register, handleSubmit } = useForm();
+import useCheckOtp from "./hooks/useCheckOtp";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+function CheckOtpForm({ setStep, phoneNumber }) {
+  const { handleSubmit } = useForm();
+  const navigate = useNavigate();
+  const { checkOtp, isCheckLoading } = useCheckOtp();
   const [otp, setOtp] = useState("");
-  const chackOtpHandler =(data)=>{
-
-  }
+  const chackOtpHandler = async () => {
+    try {
+      const data = await checkOtp({ phoneNumber, otp });
+      if (data.message.success === false) {
+        throw new Error(JSON.stringify(data.message.message));
+      }
+      if (data.user.isActive) {
+        return navigate("/home", { replace: true });
+      }
+      if (!data.user.isActive) {
+        return navigate("/complete-profile", { replace: true });
+      }
+      return toast.success([data.message.message]);
+    } catch (error) {
+      console.log(error);
+      if (!error.response) {
+        toast.error(JSON.parse(error.message));
+      } else {
+        toast.error(error.response.data.message);
+      }
+    }
+  };
   return (
     <div className="flex flex-col justify-center gap-8">
       <div className="flex flex-wrap justify-start">
@@ -27,11 +51,12 @@ function CheckOtpForm({ setStep }) {
           تغییر شماره موبایل
         </button>
       </div>
-      <form onSubmit={handleSubmit(chackOtpHandler)} className="flex flex-col gap-y-8 ">
+      <form
+        onSubmit={handleSubmit(chackOtpHandler)}
+        className="flex flex-col gap-y-8 "
+      >
         <OtpInput
           value={otp}
-         
-          
           onChange={setOtp}
           numInputs={6}
           renderSeparator={<span></span>}
@@ -57,8 +82,16 @@ function CheckOtpForm({ setStep }) {
           }}
           shouldAutoFocus
         />
-        <button className="font-DanaMedium text-primary-900 w-fit text-center self-center ">دریافت مجدد کد</button>
-        <LargeBtn  type={"submit"}>تایید</LargeBtn>
+        <button className="font-DanaMedium text-primary-900 w-fit text-center self-center ">
+          دریافت مجدد کد
+        </button>
+        <LargeBtn type={"submit"}>
+          {isCheckLoading ? (
+            <Loader height="26" color="rgb(255,255,255)" />
+          ) : (
+            "تایید"
+          )}
+        </LargeBtn>
       </form>
     </div>
   );
