@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<AuthContianer />}></Route>
         <Route path="complete-profile" element={<CompleteProfile />} />
-        <Route path="home" element={<Home />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </QueryClientProvider>
   )

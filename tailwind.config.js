@@ -3,11 +3,11 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
-      "xs": "320px",
-      "sm": `640px`,
-      "md": `768px`,
-      "lg": `1024px`,
-      "xl": `1280px`,
+      xs: "320px",
+      sm: `640px`,
+      md: `768px`,
+      lg: `1024px`,
+      xl: `1280px`,
       "2xl": `1366px`,
     },
     extend: {
@@ -15,7 +15,7 @@ export default {
         center: true,
         padding: {
           DEFAULT: "1rem",
-          lg: "0.625rem",
+          lg: "1.625rem",
         },
       },
       colors: {
@@ -47,6 +47,10 @@ export default {
         success: "rbg(0, 192, 115)",
         warning: "rgb(255, 153, 0)",
         error: "rgb( 255, 71, 87)",
+        black_base: "rgb(16,24,40)",
+        gray_base :"rgb(95, 100, 104)",
+        hover:"rgba(215, 216, 217, 0.2)",
+        blue_base:"rgb(37, 170, 225)"
       },
       borderRadius: {
         "4xl": "2rem",
