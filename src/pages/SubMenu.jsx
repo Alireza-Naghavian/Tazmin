@@ -68,7 +68,7 @@ function SubMenu({mainSubItem,mainSubDesc,secondSubItem,secondSubDesc,lastSubIte
           </span>
         </div>
         <div className="absolute h-full w-[600px] left-0 top-0 ">
-          <div className="absolute  z-10 w-full h-full bg-gradient-to-r from-[#ffffffa6] -from-1% to-white to-90% "></div>
+          <div className="absolute  z-10 w-full h-full bg-gradient-to-r from-[#ffffffa6] from-1% to-white to-90% "></div>
           <img
             src="../../public/menu-photo/header-image.png"
             loading="lazy"

@@ -9,6 +9,7 @@ function Large_Text_Field({
   id,
   required,
   validationSchema,
+  type="text"
 }) {
   return (
     <div className="relative">
@@ -21,7 +22,7 @@ function Large_Text_Field({
         {label} {required ? <span className="text-error">*</span> : ""}
       </label>
       <input
-        type="text"
+        type={type}
         className="w-full inline-flex flex-col relative min-w-0 p-0 m-0 rounded-lg px-2 py-2  border focus:outline-none"
         id={id}
         placeholder={placeholder}

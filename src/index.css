@@ -89,3 +89,10 @@ display: block !important;
 .nav-item:hover .nav-title , .nav-item:hover .nav-item-title{
   @apply text-blue_base
 }
+
+
+/* complete profile */
+
+.owner-radio:checked > .owner-backdrop{
+  @apply bg-blue_base
+}
