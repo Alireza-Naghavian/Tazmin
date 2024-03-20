@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@layer base{
+@layer base {
   @font-face {
     font-family: "Dana";
     src: local("Dana"),
@@ -26,4 +26,73 @@
       url("../public/fonts/Dana/woff2/Lalezar-Regular.ttf") format("ttf");
     font-display: swap;
   }
+}
+@layer components {
+  .largeBtn {
+    @apply w-full inline-flex items-center justify-center font-DanaMedium py-3 px-4;
+  }
+  .tr-300 {
+    @apply transition-all duration-300;
+  }
+  .nav-item {
+    @apply flex items-center cursor-pointer text-gray-800 select-none whitespace-nowrap;
+  }
+  .nav-item-title {
+    @apply font-DanaMedium text-base leading-7 flex items-center mt-[3px] text-gray-800;
+  }
+  .custom-shadow {
+    box-shadow: rgba(0, 0, 0, 0.08) 0px -1px 3px;
+  }
+  .custom-right-border {
+    border-right: 8px solid;
+
+  }
+  .custom-submenu-gradient {
+    background-color: linear-gradient(
+      to right,
+      #ffffffa6 -1%,
+      rgb(255, 255, 255) 92%
+    ) !important;
+  }
+}
+.Toastify__toast--rtl {
+  direction: rtl !important;
+  text-align: center !important;
+}
+
+
+/* nav-items */
+.nav-item div::after{
+  content: "";
+  width: 100%;
+  height: 3px;
+  display: none;
+  position: absolute;
+  bottom: 0px;
+  border-radius: 50px;
+  background-color: rgb(37, 170, 225);
+}
+
+.nav-item:hover > div:first-of-type::after{
+display: block !important;
+}
+.point{
+ @apply hidden w-[20px]
+}
+.nav-item{
+  @apply lg:w-[110px] w-[120px]
+}
+
+.nav-item:hover  .point:first-of-type{
+display: block !important;
+}
+.nav-item:hover .nav-title , .nav-item:hover .nav-item-title{
+  @apply text-blue_base
+}
+
+
+/* complete profile */
+
+.owner-radio:checked > .owner-backdrop{
+  @apply bg-blue_base
 }
