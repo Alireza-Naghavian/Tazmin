@@ -4,10 +4,9 @@ import { toast } from "react-toastify";
 const useSendOtp = () => {
   const {
     error,
-    mutate:sendUserOtp,
+    mutateAsync:sendUserOtp,
     isPending: isSendLoading,
   } = useMutation({
-    mutationKey: ["user"],
     mutationFn: sendOtpApi,
     onSuccess: (data) => {
       toast.success(data.message, {

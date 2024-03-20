@@ -6,12 +6,34 @@ import Loader from "../../ui/Loader";
 import useCheckOtp from "./hooks/useCheckOtp";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-function CheckOtpForm({ setStep, phoneNumber }) {
+import useSendOtp from "./hooks/useSendOtp";
+import useCountDownTimer from "./hooks/useCountDownTimer";
+function CheckOtpForm({ setStep, phoneNumber, resendOtp, minutes, seconds }) {
+  const {
+    minutes: resendMinutes,
+    seconds: resendSeconds,
+    setMinutes,
+    setSeconds,
+  } = useCountDownTimer();
   const { handleSubmit } = useForm();
   const navigate = useNavigate();
   const { checkOtp, isCheckLoading } = useCheckOtp();
+  const { sendUserOtp } = useSendOtp();
   const [otp, setOtp] = useState("");
+  const resendHandler = async () => {
+    await sendUserOtp(
+      { phoneNumber },
+      {
+        onSuccess: () => {
+          setMinutes(1);
+          setSeconds(59);
+        },
+      }
+    );
+  };
   const chackOtpHandler = async () => {
+    setMinutes(1);
+    setSeconds(59);
     try {
       const data = await checkOtp({ phoneNumber, otp });
       if (data.message.success === false) {
@@ -82,9 +104,7 @@ function CheckOtpForm({ setStep, phoneNumber }) {
           }}
           shouldAutoFocus
         />
-        <button className="font-DanaMedium text-primary-900 w-fit text-center self-center ">
-          دریافت مجدد کد
-        </button>
+
         <LargeBtn type={"submit"}>
           {isCheckLoading ? (
             <Loader height="26" color="rgb(255,255,255)" />
@@ -93,6 +113,29 @@ function CheckOtpForm({ setStep, phoneNumber }) {
           )}
         </LargeBtn>
       </form>
+      <div className="w-full justify-center flex items-center z-50">
+        {(seconds && seconds > 0) || (minutes && minutes > 0) ? (
+          <p className="font-DanaMedium text-primary-900 w-fit text-center self-center ">
+            مانده تا ارسال مجدد:
+            {minutes < 10 ? `0${minutes}` : minutes}:
+            {seconds < 10 ? `0${seconds}` : seconds}
+          </p>
+        ) : (resendSeconds && resendSeconds > 0) ||
+            (resendMinutes && resendMinutes > 0) ? (
+          <p className="font-DanaMedium text-primary-900 w-fit text-center self-center ">
+            مانده تا ارسال مجدد:
+            {resendMinutes < 10 ? `0${resendMinutes}` : resendMinutes}:
+            {resendSeconds < 10 ? `0${resendSeconds}` : resendSeconds}
+          </p>
+        ) : (
+          <div
+            onClick={resendHandler}
+            className="cursor-pointer font-DanaMedium text-primary-900 w-fit text-center self-center"
+          >
+            ارسال مجدد کد تایید
+          </div>
+        )}
+      </div>
     </div>
   );
 }
