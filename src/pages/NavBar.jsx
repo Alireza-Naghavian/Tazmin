@@ -37,6 +37,7 @@ function NavBar() {
                 "مشاهده وضعیت و لیست درخواست هایی که برای پروژه های شما ارسال شده است."
               }
               base_color={"border-blue_base"}
+              bg_img={"header-image.png"}
             />
           )}
         </li>
@@ -66,6 +67,7 @@ function NavBar() {
               secondSubDesc={"مشاهده لیست و وضعیت درخواست های ارسال شده"}
               lastSubItem={"مشاهده پروژه های کارفرما"}
               lastSubDesc={"لیست پروژه های ایجاد شده توسط کارفرمایان"}
+              bg_img={"header-image-2.png"}
             />
           )}
         </li>

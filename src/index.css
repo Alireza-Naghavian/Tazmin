@@ -45,7 +45,6 @@
   }
   .custom-right-border {
     border-right: 8px solid;
-
   }
   .custom-submenu-gradient {
     background-color: linear-gradient(
@@ -60,9 +59,8 @@
   text-align: center !important;
 }
 
-
 /* nav-items */
-.nav-item div::after{
+.nav-item div::after {
   content: "";
   width: 100%;
   height: 3px;
@@ -73,26 +71,37 @@
   background-color: rgb(37, 170, 225);
 }
 
-.nav-item:hover > div:first-of-type::after{
-display: block !important;
+.nav-item:hover > div:first-of-type::after {
+  display: block !important;
 }
-.point{
- @apply hidden w-[20px]
+.point {
+  @apply hidden w-[20px];
 }
-.nav-item{
-  @apply lg:w-[110px] w-[120px]
-}
-
-.nav-item:hover  .point:first-of-type{
-display: block !important;
-}
-.nav-item:hover .nav-title , .nav-item:hover .nav-item-title{
-  @apply text-blue_base
+.nav-item {
+  @apply lg:w-[110px] w-[120px];
 }
 
+.nav-item:hover .point:first-of-type {
+  display: block !important;
+}
+.he{
+  width: 200px !important;
+  text-overflow: clip;
+  max-width: 20px
+}
+.nav-item:hover .nav-title,
+.nav-item:hover .nav-item-title {
+  @apply text-blue_base;
+}
 
 /* complete profile */
 
-.owner-radio:checked > .owner-backdrop{
-  @apply bg-blue_base
+.owner-radio:checked > .owner-backdrop {
+  @apply bg-blue_base;
 }
+.contents-container >div {
+  width: calc(50% - 12px);
+   @apply grow-0 shrink-0
+}
+
+/* custom pagination for swiper  */

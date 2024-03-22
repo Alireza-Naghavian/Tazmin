@@ -7,7 +7,7 @@ function MobileMenu() {
   return (
     <nav
       className="bg-white absolute top-[64px] custom-shadow
-    min-h-screen w-full z-50 overflow-y-hidden"
+    min-h-screen  w-full z-50 overflow-y-hidden"
     >
       <div className="p-4 ">
         <div className="absolute h-full  w-full left-0 -z-10 bottom-0 bg-no-repeat bg-cover  ">
