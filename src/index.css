@@ -84,11 +84,7 @@
 .nav-item:hover .point:first-of-type {
   display: block !important;
 }
-.he{
-  width: 200px !important;
-  text-overflow: clip;
-  max-width: 20px
-}
+
 .nav-item:hover .nav-title,
 .nav-item:hover .nav-item-title {
   @apply text-blue_base;
