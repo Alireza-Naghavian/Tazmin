@@ -36,6 +36,10 @@ function Main_Hero_Header({ user, isUserLoading }) {
           <Link>
             <Small_Blue_base_Btn>ایجاد سریع پروژه</Small_Blue_base_Btn>
           </Link>
+        ) : user?.role === "ADMIN" ? (
+          <Link>
+            <Small_Blue_base_Btn>ورود به پنل ادمین</Small_Blue_base_Btn>
+          </Link>
         ) : (
           ""
         )}

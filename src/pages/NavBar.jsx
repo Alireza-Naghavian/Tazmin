@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { FiBriefcase, FiMonitor } from "react-icons/fi";
 import { TbPointFilled } from "react-icons/tb";
 import SubMenu from "./SubMenu";
-
 function NavBar() {
   const [isOwnerActive, setIsOwnerActive] = useState(false);
   const [isFreelanceActive, setIsFreelanceActive] = useState(false);
   return (
-    <nav className="h-full hidden md:block">
-      <ul className="md:flex hidden m-0 h-full gap-6  ">
+    <nav className=" hidden md:block ">
+      <ul className="md:flex hidden m-0 h-full  gap-6   ">
+   
         <li
           className={`nav-item  `}
           onMouseOver={() => setIsOwnerActive(true)}

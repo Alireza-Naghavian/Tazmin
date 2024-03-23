@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function SubMenu({mainSubItem,mainSubDesc,secondSubItem,secondSubDesc,lastSubItem,lastSubDesc,base_color,bg_img}) {
   return (
-    <div className="z-50 bg-white absolute left-0 top-16 whitespace-break-spaces w-full min-h-[380px] shadow-md cursor-default">
+    <div className="z-50 bg-white absolute left-0 top-[48px] whitespace-break-spaces w-full min-h-[380px] shadow-md cursor-default">
       <div className="flex flex-wrap w-full h-auto py-[30px] px-10  gap-8 bg-white">
         <div className="absolute top-[2px] right-0 h-full w-full z-20 custom-shadow"></div>
         <div className="flex flex-col gap-5 font-DanaBold z-20 text-black_base">
