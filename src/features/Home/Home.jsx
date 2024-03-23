@@ -1,22 +1,35 @@
-import HomePage from "../../pages/HomePage";
-import { Link} from "react-router-dom"
-import NavBar from "../../pages/NavBar";
-import { FaBarsStaggered } from "react-icons/fa6";
-import { useState } from "react";
-import MobileMenu from "../../pages/MobileMenu";
-import { IoMdClose } from "react-icons/io";
-import Header from "../../pages/Header";
-import TazminLinkLogo from "../../ui/TazminLinkLogo";
+import useGetAllCategories from "../../hooks/useGetAllCategories";
+import useUser from "../../hooks/useUser";
+import Category_capabilities from "../../ui/Category_capabilities";
+import Main_Hero_Header from "../../ui/Main_Hero_Header";
+import Owner_Freelancer_Banner from "../../ui/Owner_Banner";
+import Tazmin_grid_properties from "../../ui/Tazmin_grid_properties";
+
 function Home() {
-  const [isMenuActive,setIsMenuActive]  = useState(false);
+  const { isUserLoading, user } = useUser();
+  const { categories } = useGetAllCategories();
   return (
-      <Header>
-       <FaBarsStaggered onClick={()=>setIsMenuActive(true)}  className={`md:hidden pr-4 h-full w-10 flex items-center my-auto ${isMenuActive ? "hidden" :"flex"}`}/>
-       {isMenuActive && <MobileMenu />}
-       {isMenuActive && <IoMdClose onClick={()=>setIsMenuActive(false)}  className="md:hidden pr-4 h-full w-10 flex items-center my-auto"/>}
-    <TazminLinkLogo/>
-       <NavBar/>
-      </Header>
+    <div>
+      <Main_Hero_Header user={user} isUserLoading={isUserLoading} />
+      <Category_capabilities categories={categories} />
+      <Owner_Freelancer_Banner
+        role={"برای کارفرمایان"}
+        title={"به سادگی افراد متخصص را برای پروژه‌ی خود پیدا کنید"}
+        desc={
+          "پس از ثبت پرو‌ژه در تضمین، از هزاران فریلنسر پیشنهاد دریافت می‌کنید، و با بررسی نمونه کارها، می‌توانید بهترین پیشنهاد را انتخاب کنید."
+        }
+        btn_title={"ایجاد پروژه"}
+        cover={"employer_final.png"}
+      />
+      <Tazmin_grid_properties/>
+        <Owner_Freelancer_Banner
+        role={"برای فریلنسر ها"}
+        title={"بهترین فرصت های کاری را در تضمین پیدا کنید"}
+        desc={"تضمین به شما کمک می‌کند تا علاوه بر داشتن یک رزومه‌ی کاری تاثیرگذار به راحتی از طریق جستوجو و ارسال پیشنهاد در پروژه‌ها کسب درآمد کنید."}
+        btn_title={"لیست پروژه ها"}
+        cover={"freelancer_final.png"}
+    />
+    </div>
   );
 }
 

@@ -6,11 +6,8 @@ import { useForm } from "react-hook-form";
 import useSendOtp from "./hooks/useSendOtp";
 import useCountDownTimer from "./hooks/useCountDownTimer";
 import { toast } from "react-toastify";
-import { useMutation } from "@tanstack/react-query";
-import { sendOtpApi } from "../../services/AuthServices";
-
 function AuthContianer() {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
   const { isSendLoading, error, sendUserOtp } = useSendOtp();
   const { setMinutes, setSeconds, minutes, seconds } = useCountDownTimer();
   const {
