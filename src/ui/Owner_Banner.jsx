@@ -17,7 +17,7 @@ function Owner_Banner({ role, title, desc, cover, btn_title }) {
         </p>
         <div className="block items-center w-full lg:-mt-10">
           <Link>
-            <Small_Blue_base_Btn px="px-8" py="py-3" size="lg">
+            <Small_Blue_base_Btn px="px-8" py="py-3">
               {btn_title}
             </Small_Blue_base_Btn>
           </Link>

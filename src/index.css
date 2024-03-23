@@ -100,4 +100,8 @@
    @apply grow-0 shrink-0
 }
 
-/* custom pagination for swiper  */
+/* grid banners section styles */
+
+.custom-banners{
+  @apply text-right lg:p-8  p-5 rounded-[22px]  lg:rounded-3xl  w-full h-full flex gap-8  bg-[#F8F8F8];
+}
