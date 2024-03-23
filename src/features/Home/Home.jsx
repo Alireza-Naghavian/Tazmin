@@ -1,6 +1,7 @@
 import useGetAllCategories from "../../hooks/useGetAllCategories";
 import useUser from "../../hooks/useUser";
 import Category_capabilities from "../../ui/Category_capabilities";
+import Footer from "../../ui/Footer";
 import Main_Hero_Header from "../../ui/Main_Hero_Header";
 import Owner_Freelancer_Banner from "../../ui/Owner_Banner";
 import Tazmin_grid_properties from "../../ui/Tazmin_grid_properties";
@@ -29,6 +30,7 @@ function Home() {
         btn_title={"لیست پروژه ها"}
         cover={"freelancer_final.png"}
     />
+
     </div>
   );
 }
