@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Small_Blue_base_Btn from "./Small_Blue_base_Btn";
 
-function Owner_Banner({ role, title, desc, cover, btn_title }) {
+function Owner_Freelancer_Banner({ role, title, desc, cover, btn_title }) {
   return (
     <div className="2xl:gap-[96px] md: flex flex-col md:flex-row md:p-[56px] sm:p-6 sm:px-4 xs:py-2 mt-24 bg-[#f8f8f8] rounded-lg sm:rounded-3xl">
       <div className="flex 2xl:gap-8 lg:gap-7 justify-center flex-col xs:px-2 sm:px-0 sm:pr-8">
@@ -24,10 +24,10 @@ function Owner_Banner({ role, title, desc, cover, btn_title }) {
         </div>
       </div>
       <div className="flex items-center justify-center shrink-0 md:max-w-[50%]">
-        <img src={`/home-banners/${cover}`} alt="" />
+        <img src={`/home-banners/${cover}`} className="mx-auto object-cover" alt="" />
       </div>
     </div>
   );
 }
 
-export default Owner_Banner;
+export default Owner_Freelancer_Banner;

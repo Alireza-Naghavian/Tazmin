@@ -30,7 +30,7 @@ function Main_Hero_Header({ user, isUserLoading }) {
         </p>
         {user?.role === "FREELANCER" ? (
           <Link>
-            <Small_Blue_base_Btn>ارسال درخواست</Small_Blue_base_Btn>
+            <Small_Blue_base_Btn>لیست پروژه ها</Small_Blue_base_Btn>
           </Link>
         ) : user?.role === "OWNER" ? (
           <Link>
