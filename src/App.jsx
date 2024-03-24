@@ -8,6 +8,8 @@ import { ToastContainer } from "react-toastify";
 import CompleteProfile from "./features/Authorization/CompleteProfile";
 import SubMobileMenu from "./pages/SubMobileMenu";
 import HomePage from "./pages/HomePage";
+import OwnerLayout from "./features/Owner/OwnerLayout";
+import NewProject from "./features/Owner/NewProject";
 const queryClient = new QueryClient();
 function App() {
   return (
@@ -41,7 +43,11 @@ function App() {
               last_item={"مشاهده پروژه های کارفرمایان"}
             />
           }
+          
         />
+        <Route path="/owner" element={<OwnerLayout/>}>
+          <Route path="new-project" element={<NewProject/>}/>
+        </Route>
       </Routes>
     </QueryClientProvider>
   );

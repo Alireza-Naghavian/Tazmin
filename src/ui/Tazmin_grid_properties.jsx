@@ -4,8 +4,8 @@ function Tazmin_grid_properties() {
   return (
     <div className="grid grid-cols-2 gap-x-6  mt-24">
       <div
-        className="custom-banners col-span-2 lg:col-span-1 flex-col">
-        <img src="/home-banners/freelance-home.png" loading="lazy" alt="freelancer" />
+        className="custom-banners col-span-2 lg:col-span-1 flex-col rounded-xl">
+        <img src="/home-banners/freelance-home.png" className="rounded-xl " loading="lazy" alt="freelancer" />
         <h3 className="font-DanaBold lg:text-xl lg:leading-8  m-0 text-black_base">جزء برترین پلتفرم های فریلنسینگ ایران</h3>
         <p className="lg:leading-10 font-DanaMedium pb-12 text-black_base">تضمین،جزء بهترین های ایران است. پروژه های خود را به راحتی برون سپاری کنید و برای انجام آن ها به بهترین شکل ممکمن،نیروی متخصص استخادام کنید.</p>
       </div>
