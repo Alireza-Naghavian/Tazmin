@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import "./index.css";
 import "swiper/css";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,6 +10,10 @@ import SubMobileMenu from "./pages/SubMobileMenu";
 import HomePage from "./pages/HomePage";
 import OwnerLayout from "./features/Owner/OwnerLayout";
 import NewProject from "./features/Owner/NewProject";
+import OwnerDashboardLayout from "./features/Owner/Dashboard/OwnerDashboardLayout";
+import Stats from "./features/Owner/Dashboard/Stats";
+import ProjectManagement from "./features/Owner/Dashboard/ProjectManagement";
+import Review_Proposals from "./features/Owner/Dashboard/Review_Proposals";
 const queryClient = new QueryClient();
 function App() {
   return (
@@ -43,10 +47,23 @@ function App() {
               last_item={"مشاهده پروژه های کارفرمایان"}
             />
           }
-          
         />
-        <Route path="/owner" element={<OwnerLayout/>}>
-          <Route path="new-project" element={<NewProject/>}/>
+        <Route path="/owner" element={<OwnerLayout />}>
+          <Route index element={<Navigate to="dashboard" />} />
+          <Route path="dashboard" element={<OwnerDashboardLayout />}>
+            <Route element={<Stats />} />
+            <Route
+              index
+              element={<Navigate to={"project-management"} replace />}
+            />
+            <Route
+              path="project-management"
+              element={<ProjectManagement />}>
+
+              </Route>
+            <Route path="review-proposals" element={<Review_Proposals />} />
+          </Route>
+          <Route path="new-project" element={<NewProject />} />
         </Route>
       </Routes>
     </QueryClientProvider>

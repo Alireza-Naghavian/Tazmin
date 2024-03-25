@@ -16,3 +16,10 @@ export const completeProfileApi = (data) => {
 export const getUserProfileApi = () => {
   return http.get("/user/profile").then(({ data }) => data.data);
 };
+export const UpdateUserProfileApi = (data) => {
+  return http.patch("/user/update",data).then(({ data }) => data.data);
+};
+export const logOutUserProfileApi = () => {
+  return http.post("/user/logout").then(({ data }) => data.data);
+};
+
