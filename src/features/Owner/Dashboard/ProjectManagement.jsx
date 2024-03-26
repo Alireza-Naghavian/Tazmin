@@ -10,7 +10,7 @@ function ProjectManagement() {
   const navigate = useNavigate();
   if (ProjectsLoading)
     return (
-      <div className="w-full col-span-9 flex justify-center items-center relative  row-span-6">
+      <div className="w-full col-span-9 flex justify-center items-center relative  row-span-5">
         <div className="z-20 w-full mx-auto flex justify-center absolute">
           <Loader />
         </div>

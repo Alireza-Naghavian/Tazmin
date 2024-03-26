@@ -14,8 +14,15 @@ import OwnerDashboardLayout from "./features/Owner/Dashboard/OwnerDashboardLayou
 import Stats from "./features/Owner/Dashboard/Stats";
 import ProjectManagement from "./features/Owner/Dashboard/ProjectManagement";
 import Review_Proposals from "./features/Owner/Dashboard/Review_Proposals";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const queryClient = new QueryClient();
 function App() {
+  AOS.init({
+    delay: 500, 
+    duration: 600, 
+    
+  });
   return (
     <QueryClientProvider client={queryClient}>
       <ToastContainer rtl={true} />

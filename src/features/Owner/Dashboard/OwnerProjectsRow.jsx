@@ -5,9 +5,11 @@ import ChangeStatusProjects from './ChangeStatusProjects'
 import ProjectsOperations from './ProjectsOperations'
 import { BiSolidDetail } from "react-icons/bi";
 import Modal from '../../../ui/Modal'
+import { FaFileContract } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom'
 function OwnerProjectsRow({index,project}) {
   const [isDetailOpen, setIsDetailOpen] = useState(false)
-  console.log(project);
+  const navigate = useNavigate();
   return (
   <Table.Row cols={"grid-cols-7"}>
      <td>{index + 1}</td>
@@ -16,7 +18,7 @@ function OwnerProjectsRow({index,project}) {
       <td><ChangeStatusProjects project={project} project_id={project?._id}/></td>
       <td><ProjectsOperations project={project}/></td>
       <td onClick={()=>setIsDetailOpen(true)}><BiSolidDetail  size={24} className='text-gray_base cursor-pointer flex' /></td>
-      <td>{project.budget}</td>
+      <td onClick={()=>navigate("/owner/dashboard/review-proposals")} ><FaFileContract className='text-gray_base cursor-pointer flex' size={24}/></td>
 
      {isDetailOpen && <DetailData project={project} setIsDetailOpen={setIsDetailOpen} isDetailOpen={isDetailOpen}/>}
   </Table.Row>
