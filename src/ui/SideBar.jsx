@@ -8,12 +8,11 @@ import LogOut from "../features/Authorization/LogOut";
 
 function SideBar() {
   const { isUserLoading, user } = useUser();
-  console.log(user);
 
-  let userValue ={}
-  if(user){
-    const {  name, email ,biography} = user;
-     userValue = {
+  let userValue = {};
+  if (user) {
+    const { name, email, biography } = user;
+    userValue = {
       name,
       email,
       biography,
@@ -27,7 +26,7 @@ function SideBar() {
     register,
     reset,
     formState: { errors },
-  } = useForm({defaultValues:userValue});
+  } = useForm({ defaultValues: userValue });
   const statusStyles = [
     {
       labal: "رد شده",

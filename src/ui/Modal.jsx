@@ -1,5 +1,6 @@
 import {  Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { IoMdClose } from "react-icons/io";
 function Modal({ isOpen, setIsOpen, modal_Title, children }) {
   function closeModal() {
     setIsOpen(false);
@@ -37,9 +38,10 @@ function Modal({ isOpen, setIsOpen, modal_Title, children }) {
                 >
                   <Dialog.Title
                     as="h3"
-                    className="text-lg border-b  font-medium leading-8 text-gray-900"
+                    className="text-lg border-b flex justify-between items-center font-medium leading-8 text-gray-900"
                   >
                     {modal_Title}
+                   <div onClick={closeModal}> <IoMdClose size={22} /></div>
                   </Dialog.Title>
                   <div className="mt-2">{children}</div>
                 </Dialog.Panel>
