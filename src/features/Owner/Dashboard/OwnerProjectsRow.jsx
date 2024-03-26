@@ -11,8 +11,7 @@ function OwnerProjectsRow({index,project}) {
   const [isDetailOpen, setIsDetailOpen] = useState(false)
   const navigate = useNavigate();
   return (
-  <Table.Row cols={"grid-cols-7"}>
-     <td>{index + 1}</td>
+  <Table.Row cols={"lg:grid-cols-6 "}>
       <td title={project?.title} className=' '>{truncateText(project?.title ,18)}</td>
       <td>{project?.freelancer?.name || "----"}</td>
       <td><ChangeStatusProjects project={project} project_id={project?._id}/></td>
