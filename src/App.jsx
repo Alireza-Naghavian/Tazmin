@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import "./index.css";
 import "swiper/css";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,8 +8,21 @@ import { ToastContainer } from "react-toastify";
 import CompleteProfile from "./features/Authorization/CompleteProfile";
 import SubMobileMenu from "./pages/SubMobileMenu";
 import HomePage from "./pages/HomePage";
+import OwnerLayout from "./features/Owner/OwnerLayout";
+import NewProject from "./features/Owner/NewProject";
+import OwnerDashboardLayout from "./features/Owner/Dashboard/OwnerDashboardLayout";
+import Stats from "./features/Owner/Dashboard/Stats";
+import ProjectManagement from "./features/Owner/Dashboard/ProjectManagement";
+import Review_Proposals from "./features/Owner/Dashboard/Review_Proposals";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const queryClient = new QueryClient();
 function App() {
+  AOS.init({
+    delay: 500, 
+    duration: 600, 
+    
+  });
   return (
     <QueryClientProvider client={queryClient}>
       <ToastContainer rtl={true} />
@@ -42,6 +55,15 @@ function App() {
             />
           }
         />
+        <Route path="/owner" element={<OwnerLayout />}>
+          <Route index element={<Navigate to="dashboard" />} />
+          <Route path="dashboard" element={<OwnerDashboardLayout />}>
+            <Route index element={<Navigate to={"project-management"} replace />}/>
+            <Route path="project-management" element={<ProjectManagement />}/>
+            <Route path="review-proposals" element={<Review_Proposals />} />
+          </Route>
+          <Route path="new-project" element={<NewProject />} />
+        </Route>
       </Routes>
     </QueryClientProvider>
   );

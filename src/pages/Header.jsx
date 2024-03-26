@@ -6,6 +6,7 @@ import { IoMdClose } from "react-icons/io";
 import { useState } from "react";
 import TazminLinkLogo from "../ui/TazminLinkLogo";
 
+
 function Header() {
   const [isMenuActive, setIsMenuActive] = useState(false);
   // lock screen scroll when menu is active !!
