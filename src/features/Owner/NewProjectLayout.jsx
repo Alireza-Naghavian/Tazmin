@@ -11,13 +11,16 @@ import { useQueryClient } from "@tanstack/react-query";
 import useCreateProject from "./hooks/useCreateProject";
 import Loader from "../../ui/Loader";
 import { PiWarningDiamondBold } from "react-icons/pi";
-
+import { useNavigate } from "react-router-dom";
+import { FaPlus } from "react-icons/fa";
+import { FaArrowLeftLong } from "react-icons/fa6";
 function NewProjectLayout() {
   const [renderStep, setRenderStep] = useState(0);
   const [date, setDate] = useState(new Date());
   const queryClient = useQueryClient();
   const { createProject, isCreateLoading } = useCreateProject();
   const [tags, setTags] = useState([]);
+  const navigate = useNavigate();
   const {
     register,
     reset,
@@ -35,6 +38,7 @@ function NewProjectLayout() {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["projects"] });
         reset();
+        navigate("/owner/dashboard/project-management")
       },
     });
   };
@@ -120,6 +124,12 @@ function NewProjectLayout() {
             واضح توضیح دهید که چه می خواهید.
           </p>
         </div>
+        <div className="flex  max-w-[320px]  mt-6">
+        <button onClick={()=>navigate("/owner/dashboard/project-management")} className="rounded-lg w-full bg-cyan-500 tr-300 hover:bg-blue_base px-2 py-2 flex  items-center gap-x-2 text-white">
+               اتاق کار من (مدیریت پروژه ها)         
+        <FaArrowLeftLong color="white"/>
+        </button>
+      </div>
       </div>
     </div>
   );

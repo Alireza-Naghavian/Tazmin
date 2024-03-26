@@ -7,7 +7,7 @@ function DatePickerField({ label, date, setDate }) {
     <div className="flex flex-col mt-4">
       <label className="font-Dana text-gray_base mr-1 mb-4">{label}</label>
       <DatePicker
-        containerClassName="max-w-fit"
+        containerClassName="max-w-fit "
         inputClass="w-full mt-0 max-w-fit h-[40px] bg-blue_base/15 pr-4 
          text-black_base  border  border-gray_base/25 
          flex  items-start rounded-md focus:outline-none"

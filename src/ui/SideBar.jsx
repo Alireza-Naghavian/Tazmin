@@ -2,22 +2,26 @@ import React, { useState } from "react";
 import useUser from "../hooks/useUser";
 import { FaRegEdit } from "react-icons/fa";
 import { RiLogoutBoxLine } from "react-icons/ri";
-import Modal from "./Modal";
-import Valid_text_field from "./Valid_text_field";
 import { useForm } from "react-hook-form";
 import UserEditData from "../features/Authorization/UserEditData";
-import Loader from "./Loader";
 import LogOut from "../features/Authorization/LogOut";
 
 function SideBar() {
   const { isUserLoading, user } = useUser();
-  let [isOpen, setIsOpen] = useState(false);
-  let [isLogoutOpen,setIsLogoutOpen]  = useState(false)
-  const userValue ={
-    name:user?.name,
-    email:user?.email,
-    biography:user?.biography
+  console.log(user);
+
+  let userValue ={}
+  if(user){
+    const {  name, email ,biography} = user;
+     userValue = {
+      name,
+      email,
+      biography,
+    };
   }
+
+  let [isOpen, setIsOpen] = useState(false);
+  let [isLogoutOpen, setIsLogoutOpen] = useState(false);
   const {
     handleSubmit,
     register,
@@ -39,7 +43,11 @@ function SideBar() {
     },
   ];
   return (
-    <div className={`shadow-md bg-gray_base/10 w-full h-full rounded-xl flex flex-col  pt-10 px-7 pb-6 ${isUserLoading ? "  z-50 blur-sm":"" }`}>
+    <div
+      className={`shadow-md bg-gray_base/10 w-full h-full rounded-xl flex flex-col  pt-10 px-7 pb-6 ${
+        isUserLoading ? "  z-50 blur-sm" : ""
+      }`}
+    >
       <div className="flex flex-col ">
         <img
           src="/logo/user.jpg"
@@ -62,9 +70,7 @@ function SideBar() {
             ? "فریلنسر"
             : "ادمین"}
         </span>
-        <span
-          className={`font-DanaMedium    truncate text-gray_base`}
-        >
+        <span className={`font-DanaMedium    truncate text-gray_base`}>
           وضعیت:
           <span className={`pr-1 ${statusStyles[user?.status]?.style}`}>
             {statusStyles[user?.status]?.labal}
@@ -79,14 +85,26 @@ function SideBar() {
         <FaRegEdit />
         ویرایش اطلاعات
       </button>
-      <button onClick={()=>setIsLogoutOpen(true)} className="w-full px-2 flex gap-x-2 mt-6  items-center bg-blue_base/55 tr-300 hover:bg-blue_base py-2 text-white rounded-md">
+      <button
+        onClick={() => setIsLogoutOpen(true)}
+        className="w-full px-2 flex gap-x-2 mt-6  items-center bg-blue_base/55 tr-300 hover:bg-blue_base py-2 text-white rounded-md"
+      >
         <RiLogoutBoxLine />
         خروج
       </button>
       {isOpen && (
-      <UserEditData reset={reset} handleSubmit={handleSubmit} register={register} setIsOpen={setIsOpen} isOpen={isOpen} errors={errors}/>
+        <UserEditData
+          reset={reset}
+          handleSubmit={handleSubmit}
+          register={register}
+          setIsOpen={setIsOpen}
+          isOpen={isOpen}
+          errors={errors}
+        />
       )}
-      {isLogoutOpen && <LogOut setIsOpen={setIsLogoutOpen} isOpen={isLogoutOpen}/>}
+      {isLogoutOpen && (
+        <LogOut setIsOpen={setIsLogoutOpen} isOpen={isLogoutOpen} />
+      )}
     </div>
   );
 }
