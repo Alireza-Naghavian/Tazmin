@@ -10,7 +10,7 @@ function Stats() {
   console.log(numbOfAcceptedProject);
  const numOfProposals =  projects.reduce((acc,curr)=> curr.proposals.length + acc ,0)
   return (
-    <div className="col-span-9 row-span-2 bg-zinc-200/55 rounded-lg mb-2 shadow-sm">
+  
       <div className="w-full">
         <div className="pt-2 pr-2">
           <h3 className="text-lg font-DanaBold text-black_base">آمار کلی:</h3>
@@ -18,7 +18,7 @@ function Stats() {
             در یک نما خلاصه ای از آمار خود را مشاهده کنید.
           </p>
         </div>
-        <div className="grid grid-cols-3 w-full h-full p-4 " >
+        <div className="grid   sm:grid-cols-3 gap-y-2 sm:gap-y-0 w-full h-full p-4 " >
           <div className="flex gap-x-2 w-full h-full  justify-center flex-col mt-2 font-DanaBold items-center "data-aos="zoom-in" data-aos-delay="400"  data-aos-once="false">
             <div className="text-lg font-DanaBold">{numberOfProjects}</div>
             <div className="flex justify-center  items-center gap-x-2">
@@ -46,7 +46,7 @@ function Stats() {
           </div>
         </div>
       </div>
-    </div>
+   
   );
 }
 

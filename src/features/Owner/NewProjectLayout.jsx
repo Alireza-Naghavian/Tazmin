@@ -29,8 +29,16 @@ function NewProjectLayout() {
   } = useForm();
   const { categories } = useGetAllCategories();
   const submitProjectHandler = (data) => {
-    const newProject = {
-      ...data,
+    const {budget,category,description,title} = data
+    const sanitizedValue = Number(budget.replace(/,/g, ''));
+    let validData = {
+      title,
+      description,
+      category,
+      budget:sanitizedValue
+    }
+  const newProject = {
+      ...validData,
       tags,
       deadline: new Date(date).toISOString(),
     };

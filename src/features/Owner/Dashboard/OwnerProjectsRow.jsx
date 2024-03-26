@@ -7,7 +7,7 @@ import { BiSolidDetail } from "react-icons/bi";
 import Modal from '../../../ui/Modal'
 import { FaFileContract } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom'
-function OwnerProjectsRow({index,project}) {
+function OwnerProjectsRow({project}) {
   const [isDetailOpen, setIsDetailOpen] = useState(false)
   const navigate = useNavigate();
   return (
@@ -35,9 +35,9 @@ const DetailData=({project,setIsDetailOpen,isDetailOpen})=>{
   <span>بودجه پروژه : {project.budget.toLocaleString()} تومان</span>
   <div className='flex flex-col gap-y-1'>
     <span>مهارت های مورد نیاز:</span>
-    <span className='flex '>
+    <span className='flex flex-wrap gap-y-2 overflow-x-auto w-fit'>
       {project.tags.map(tag=>{
-        return <span key={tag} className=' text-white/90 bg-blue_base/65 rounded-lg mr-2 px-2 py-1 '>{tag}</span>
+        return <span key={tag} className=' text-xs  text-white/90 bg-blue_base/65 rounded-lg mr-2 px-2 py-1 '>{tag}</span>
       })}
     </span>
   </div>

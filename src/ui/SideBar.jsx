@@ -50,7 +50,7 @@ function SideBar() {
       <div className="flex flex-col ">
         <img
           src="/logo/user.jpg"
-          className="object-cover rounded-full w-1/2 mx-auto h-fit"
+          className="object-cover rounded-full lg:w-1/2 mx-auto h-fit"
           alt=""
         />
         <span className="text-center mt-4 text-blue-500 font-DanaBold">
@@ -77,20 +77,22 @@ function SideBar() {
           <span className="text-gray_base"> توسط ادمین </span>
         </span>
       </div>
-      <button
+    <div className="flex lg:flex-col md:flex-row flex-col gap-x-6 justify-center">
+    <button
         onClick={() => setIsOpen(true)}
-        className="w-full px-2 flex gap-x-2 mt-6  items-center bg-blue_base/55 tr-300 hover:bg-blue_base py-2 text-white rounded-md"
+        className="lg:w-full md:w-[30%] sm:w-1/2 px-2 flex gap-x-2 mt-6  items-center bg-blue_base/55 tr-300 hover:bg-blue_base py-2 text-white rounded-md"
       >
         <FaRegEdit />
         ویرایش اطلاعات
       </button>
       <button
         onClick={() => setIsLogoutOpen(true)}
-        className="w-full px-2 flex gap-x-2 mt-6  items-center bg-blue_base/55 tr-300 hover:bg-blue_base py-2 text-white rounded-md"
+        className="lg:w-full md:w-[30%] sm:w-1/2 px-2 flex gap-x-2 mt-6  items-center bg-blue_base/55 tr-300 hover:bg-blue_base py-2 text-white rounded-md"
       >
         <RiLogoutBoxLine />
         خروج
       </button>
+    </div>
       {isOpen && (
         <UserEditData
           reset={reset}

@@ -68,7 +68,10 @@ function UserEditData({isOpen,setIsOpen,register,errors,handleSubmit,reset}) {
               cols="30"
               rows="4"
             ></textarea>
+         
+
             <LargeBtn type={"submit"}>{isEditLoading ? <Loader height="26" color="rgb(255,255,255)"/> :"تایید"}</LargeBtn>
+           
           </form>
         </Modal>
   )

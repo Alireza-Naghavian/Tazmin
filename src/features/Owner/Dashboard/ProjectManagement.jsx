@@ -10,7 +10,7 @@ function ProjectManagement() {
   const navigate = useNavigate();
   if (ProjectsLoading)
     return (
-      <div className="w-full col-span-9 flex justify-center items-center relative  row-span-5">
+      <div className="w-full lg:col-span-9 col-span-12 flex justify-center items-center relative  row-span-5">
         <div className="z-20 w-full mx-auto flex justify-center absolute">
           <Loader />
         </div>
@@ -19,11 +19,11 @@ function ProjectManagement() {
     );
   if (!projects.length)
     return (
-      <div className="col-span-9  row-span-6 bg-gray_base/25 max-h-[550px] overflow-y-auto overflow-x-auto bg-slate-50 rounded-lg shadow-md w-full px-4 xl:px-20 pb-6">
+      <div className="lg:col-span-9 col-span-12  row-span-6 bg-gray_base/25 max-h-[550px] overflow-y-auto overflow-x-auto bg-slate-50 rounded-lg shadow-md w-full px-4 xl:px-20 pb-6">
         <div className="flex justify-end   ml-0  mt-6">
           <button
             onClick={() => navigate("/owner/new-project")}
-            className="rounded-lg bg-cyan-500 tr-300 hover:bg-blue_base px-2 py-2 flex  items-center gap-x-2 text-white"
+            className="rounded-lg  w-full sm:w-auto bg-cyan-500 tr-300 hover:bg-blue_base px-2 py-2 flex justify-center sm:justify-normal  items-center gap-x-2 text-white"
           >
             <FaPlus color="white" />
             افزودن پروژه جدید
@@ -33,7 +33,7 @@ function ProjectManagement() {
       </div>
     );
   return (
-    <div className="col-span-9  row-span-6 max-h-[500px] overflow-y-auto overflow-x-auto bg-slate-50 rounded-lg shadow-md w-full px-4 xl:px-20 pb-6 ">
+    <div className="lg:col-span-9 col-span-12 lg:order-3 order-2   row-span-6 lg:max-h-[550px] max-h-[450px]  overflow-y-auto overflow-x-auto bg-slate-50 rounded-lg shadow-md w-full px-4 xl:px-20 pb-6 ">
       <div className="flex justify-end  ml-0  mt-6">
         <button
           onClick={() => navigate("/owner/new-project")}
@@ -44,7 +44,7 @@ function ProjectManagement() {
         </button>
       </div>
       {projects &&
-            projects.map((project, index) => {
+            projects.map((project) => {
               return (
                 <Table  key={project?._id}>
         <Table.Header cols={"grid-cols-6 "}>
@@ -59,7 +59,7 @@ function ProjectManagement() {
 
         <Table.Body>
         <OwnerProjectsRow
-                  index={index}
+                 
                   project={project}
                  
                 />

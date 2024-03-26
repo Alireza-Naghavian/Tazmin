@@ -2,7 +2,7 @@
 function Table({ children }) {
     return (
       <div className="">
-        <table className="lg:table flex  w-full">{children}</table>
+        <table className="lg:table flex justify-center   w-full">{children}</table>
       </div>
     );
   }
