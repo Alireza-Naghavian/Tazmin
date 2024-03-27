@@ -49,6 +49,9 @@ export default {
         hover:"rgba(215, 216, 217, 0.2)",
         blue_base:"rgb(37, 170, 225)"
       },
+      letterSpacing:{
+        "tightest": "-0.065em"
+      },
       borderRadius: {
         "4xl": "2rem",
       },
