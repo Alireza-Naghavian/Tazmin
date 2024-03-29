@@ -15,6 +15,11 @@ function CheckOtpForm({ setStep, phoneNumber, resendOtp, minutes, seconds }) {
     setMinutes,
     setSeconds,
   } = useCountDownTimer();
+  const editPhoneHandler =()=>{
+    setStep(1)
+    setMinutes(0);
+    setSeconds(0);
+  }
   const { handleSubmit } = useForm();
   const navigate = useNavigate();
   const { checkOtp, isCheckLoading } = useCheckOtp();
@@ -64,10 +69,10 @@ function CheckOtpForm({ setStep, phoneNumber, resendOtp, minutes, seconds }) {
       </div>
       <div className="flex flex-col gap-y-4">
         <span className="text-gray-800 font-DanaMedium leading-tight">
-          کد پیامک‌شده به شماره موردنظر را وارد کنید.
+          کد پیامک‌ شده به شماره موردنظر را وارد کنید.
         </span>
         <button
-          onClick={() => setStep(1)}
+          onClick={() =>editPhoneHandler()}
           className="w-fit text-primary-900 text-sm leading-4 font-Dana"
         >
           تغییر شماره موبایل

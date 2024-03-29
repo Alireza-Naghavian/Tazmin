@@ -13,9 +13,9 @@ function FreelancerLayout() {
       </Header>
     </div>
     <Outlet/>
-    {/* <div className="border-t border-t-gray_base w-full mt-16 ">
+    <div className="border-t border-t-gray_base w-full mt-16 ">
       <Footer />
-    </div> */}
+    </div>
   </div>
   )
 }

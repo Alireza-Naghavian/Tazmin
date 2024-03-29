@@ -30,7 +30,7 @@ function Stats() {
             <div className="flex gap-x-2 w-full h-full  justify-center flex-col mt-2 font-DanaBold items-center ">
               <div className="text-lg font-DanaBold">{numbOfAcceptedProject}</div>
               <div className="flex justify-center  items-center gap-x-2">
-                <MdOutlineHandshake size={28} className="text-zinc-600" />
+                <ImNewspaper size={28} className="text-zinc-600" />
                 پروژه های  جاری
               </div>
             </div>
@@ -39,7 +39,7 @@ function Stats() {
             <div className="flex gap-x-2 w-full h-full  justify-center flex-col mt-2 font-DanaBold items-center ">
               <div className="text-lg font-DanaBold">{numOfProposals}</div>
               <div className="flex justify-center  items-center gap-x-2">
-                <ImNewspaper  size={28} className="text-zinc-600" />
+                <MdOutlineHandshake size={28} className="text-zinc-600" />
                  درخواست های دریافتی
               </div>
             </div>
