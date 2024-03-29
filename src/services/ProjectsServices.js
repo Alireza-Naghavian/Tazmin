@@ -17,3 +17,6 @@ export function editProjectApi({ id, newProject }) {
 export const getAllProjectsApi = (qs) => {
   return http.get(`/project/list${qs}`).then(({ data }) => data.data);
 };
+export const getSingleProjectApi = (id) => {
+  return http.get(`/project/${id}`).then(({ data }) => data.data);
+};
