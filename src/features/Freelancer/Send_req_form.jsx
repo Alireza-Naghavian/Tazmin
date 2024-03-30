@@ -15,7 +15,6 @@ function Send_req_form({ setIsOpen, projectId }) {
   const {
     handleSubmit,
     register,
-    formState: { errors },
   } = useForm();
   const send_req_handler= (data)=>{
     const {duration,price,description} = data
@@ -29,10 +28,10 @@ function Send_req_form({ setIsOpen, projectId }) {
    }})
   }
   return (
-    <div className="container  sm:px-2 px-2  pt-8  pb-9">
+    <div className="px-2  pt-8 z-50  pb-9">
       <form className="flex flex-col" onSubmit={handleSubmit(send_req_handler)}>
-        <div className="w-full flex gap-x-3 max-h-[200px] items-center">
-          <div className="flex flex-col gap-y-4 w-1/2  min-h-[150px] max-h-[150px] h-full">
+        <div className="w-full flex sm:flex-row flex-col gap-y-4 gap-x-3 sm:max-h-[200px] items-center">
+          <div className="flex flex-col gap-y-4 sm:w-1/2 w-full  min-h-[150px] max-h-[150px] h-full">
             <div className="">
               <label className="text-sm" htmlFor="price">
                 کل پیشنهاد شما (تومان) :
@@ -70,7 +69,7 @@ function Send_req_form({ setIsOpen, projectId }) {
               />
             </div>
           </div>
-          <div className="w-1/2 bg-gray-200 rounded-lg p-2  min-h-[155px] max-h-[155px]">
+          <div className="sm:w-1/2 w-full bg-gray-200 rounded-lg p-2  sm:min-h-[155px] sm:max-h-[155px]">
             <div className="flex flex-col gap-y-4">
               <p className="flex justify-between px-2 mt-2">
                 <span className="text-gray_base font-DanaMedium text-sm">

@@ -5,13 +5,27 @@ import { BsArrowLeft } from "react-icons/bs";
 import { IoChevronDown, IoTimeOutline } from "react-icons/io5";
 import { BiMessageSquareEdit } from "react-icons/bi";
 import ProjectOverView from './ProjectOverView';
+import { animated, useSpring } from '@react-spring/web';
+import Button_Sheet from '../../ui/Button_Sheet';
+import Send_req_form from './Send_req_form';
 function SingleProjectData() {
   const {id}= useParams();
   const {project} = useGetSingleProject(id)
-  console.log(project);
   const [increment, setIncrement] = useState(3);
+  const [openForm, setOpenForm] = useState(false);
+  if (openForm) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "unset";
+  }
+  const filterAnimation = useSpring({
+    opacity: 1,
+    config: { delay: 0, duration: 300 },
+    transform: openForm ? "translateY(0rem)" : "translateY(100rem)",
+  });
   return (
-    <div className='container  sm:px-16 px-4  pt-12  pb-9 '>
+    <div className=' relative  pt-12  pb-9 '>
+      <div className="sm:px-14 px-4 ">
       <div className="w-full my-0 mx-auto max-w-[1200px] relative bg-white rounded-lg shadow-md border-t-8 border-t-blue_base ">
       <ProjectOverView project={project}/>
       </div>
@@ -19,7 +33,7 @@ function SingleProjectData() {
         <h4 className='text-xl font-DanaBold text-black_base'>
           فریلنسر هایی که به این پروژه پیشنهاد ارسال کرده اند:
         </h4>
-        <div className="grid grid-cols-3 gap-x-4 px-8 ">
+        <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-4 md:px-8 sm:px-6">
           {project?.proposals.slice(0,increment).map((proposal)=>{
             return(
               <div key={proposal?._id} className='flex flex-col gap-y-6  mt-12 bg-gray-100/40 py-2   rounded-lg'>
@@ -48,6 +62,8 @@ function SingleProjectData() {
               </div>
             )
           })}
+   
+        </div>
         <div className='col-span-3 mx-auto mt-8' >
         {  !project?.proposals?.length ?  <span>پیشنهادی برای این پروژه ارسال نشده است.</span> : 
          (project?.proposals && project?.proposals?.length == increment) ||
@@ -65,8 +81,27 @@ function SingleProjectData() {
           ""
         )}
         </div>
-        </div>
       </div>
+      </div>
+      {/* sm send req btn fixed*/}
+          <div  className="md:hidden w-screen fixed bottom-0 min-h-[60px] z-40 bg-blue_base">
+            <button onClick={()=>setOpenForm(true)} className='w-full h-full mx-auto text-center text-white font-DanaBold items-center justify-center absolute my-auto flex gap-x-2'>
+              ثبت پیشنهاد
+              <BsArrowLeft size={32}/>
+            </button>
+          </div>
+      
+        {  
+            <animated.div
+              className="bottom-sheet overflow-y-auto bg-white h-screen z-50"
+              style={filterAnimation}
+            >
+              <Button_Sheet setOpenSheet={setOpenForm} sheetTitle={"ارسال پیشنهاد"}>
+             <Send_req_form projectId={project?._id} setIsOpen={setOpenForm}/>
+              </Button_Sheet>
+            </animated.div>
+          }
+     
     </div>
   )
 }

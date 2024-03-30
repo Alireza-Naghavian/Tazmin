@@ -9,6 +9,7 @@ import Button_Sheet from "../../ui/Button_Sheet";
 import { useSpring, animated } from "@react-spring/web";
 import { IoChevronDown } from "react-icons/io5";
 import Pr_Lists from "./Pr_Lists";
+import LargeBtn from "../../ui/LargeBtn";
 function ProjectLists() {
   const { projects, projectsLoading } = useGetAllProjects();
   const { transformedCategories } = useGetAllCategories();
@@ -62,15 +63,11 @@ function ProjectLists() {
             title={"دسته بندی :"}
             filterField={"category"}
             options={[
-              { value: "ALL", label: "دسته بندی (همه)" },
-              ...transformedCategories,
-            ]}
-          />
+              { value: "ALL", label: "دسته بندی (همه)" }, ...transformedCategories,]}/>
           <DropDown_Sort
             title={"مرتب سازی بر اساس:"}
             filterField={"sort"}
-            options={sortOption}
-          />
+            options={sortOption}/>
         </div>
       </div>
       <div className="md:mt-24 mt-10 flex md:flex-col  justify-between  md:justify-start items-start md:px-0 px-2 pr-2">
@@ -83,23 +80,47 @@ function ProjectLists() {
         <div className="md:hidden">
           <div
             onClick={() => setOpenFilter(true)}
-            className="flex gap-x-4 items-center   py-1 px-2"
-          >
+            className="flex gap-x-4 items-center   py-1 px-2">
             <IoFilterSharp />
             <span> مرتب کردن</span>
           </div>
           {
             <animated.div
               className="bottom-sheet overflow-y-auto"
-              style={filterAnimation}
-            >
-              <Button_Sheet
-                transformedCategories={transformedCategories}
-                sortOption={sortOption}
-                statusOptions={statusOptions}
-                openFilter={openFilter}
-                setOpenFilter={setOpenFilter}
-              />
+              style={filterAnimation}>
+              <Button_Sheet sheetTitle={"مرتب سازی بر اساس"} setOpenSheet={setOpenFilter}>
+                <div className=" w-full">
+                  <div className="w-full flex justify-center xs:px-1 sm:px-1.5  gap-x-4">
+                    <Status_pr_btn
+                      filterField={"status"}
+                      options={statusOptions}
+                    />
+                  </div>
+                  <div className="w-full grid sm:grid-cols-2 px-4 sm:gap-y-0 gap-y-6 gap-x-6 mt-8">
+                    <DropDown_Sort
+                      title={"دسته بندی :"}
+                      filterField={"category"}
+                      options={[
+                        { value: "ALL", label: "دسته بندی (همه)" },
+                        ...transformedCategories,
+                      ]}
+                    />
+                    <DropDown_Sort
+                      title={"مرتب سازی بر اساس:"}
+                      filterField={"sort"}
+                      options={sortOption}
+                    />
+                  </div>
+                </div>
+                <div
+                  onClick={() => setOpenFilter(false)}
+                  className="mt-24 px-4 sm:mt-52 pb-8 flex relative w-full sm:child:w-1/2 child:mr-auto  child:mt-auto  mr-auto   xs:mx-auto sm:mx-0 "
+                >
+                  <LargeBtn bg="bg-blue_base" hover="">
+                    اعمال
+                  </LargeBtn>
+                </div>
+              </Button_Sheet>
             </animated.div>
           }
         </div>
