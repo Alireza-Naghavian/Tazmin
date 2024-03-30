@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BsArrowLeft } from 'react-icons/bs'
+import Modal from '../../ui/Modal'
+import Send_req_form from './Send_req_form'
 
 function ProjectOverView({project}) {
+    const [isOpen,setIsOpen] = useState(false)
+
   return (
      
     <div className="overview  ">
@@ -69,12 +73,17 @@ function ProjectOverView({project}) {
           </span>
           {/* send request btn */}
           <div className="w-full rounded-bl-lg  h-full">
-            <button className='bg-blue_base/65  hover:bg-blue_base 
+            <button onClick={()=>setIsOpen(true)} className='bg-blue_base/65  hover:bg-blue_base 
              tr-300 rounded-bl-lg px-12 text-lg
              flex gap-x-2 items-center text-white w-full h-full'>
             <span>ارسال پیشنهاد</span>
             <BsArrowLeft size={32} />
             </button>
+          {isOpen && <Modal isOpen={isOpen} max_w='max-w-3xl' setIsOpen={setIsOpen} modal_Title={"ارسال پیشنهاد"}>
+
+            <Send_req_form setIsOpen={setIsOpen} projectId={project?._id}/>
+
+            </Modal>}
           </div>
         </div>
       </div>
