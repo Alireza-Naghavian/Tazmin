@@ -11,11 +11,15 @@ import HomePage from "./pages/HomePage";
 import OwnerLayout from "./features/Owner/OwnerLayout";
 import NewProject from "./features/Owner/NewProject";
 import OwnerDashboardLayout from "./features/Owner/Dashboard/OwnerDashboardLayout";
-import Stats from "./features/Owner/Dashboard/Stats";
 import ProjectManagement from "./features/Owner/Dashboard/ProjectManagement";
 import Review_Proposals from "./features/Owner/Dashboard/Review_Proposals";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import FreelancerLayout from "./features/Freelancer/FreelancerLayout";
+import FreelanceDashboardLayout from "./features/Freelancer/Dashboard/FreelanceDashboardLayout";
+import ProposalManageMent from "./features/Freelancer/Dashboard/ProposalManageMent";
+import ProjectLists from "./features/Freelancer/ProjectLists";
+import SingleProjectData from "./features/Freelancer/SingleProjectData";
 const queryClient = new QueryClient();
 function App() {
   AOS.init({
@@ -63,6 +67,17 @@ function App() {
             <Route path="review-proposals" element={<Review_Proposals />} />
           </Route>
           <Route path="new-project" element={<NewProject />} />
+        </Route>
+        <Route path="/freelancer" element={<FreelancerLayout/>}>
+          <Route  index element={<Navigate to={"freelance-dashboard"}/>}/>
+          <Route path="freelance-dashboard" element={<FreelanceDashboardLayout/>} >
+          <Route index element={<Navigate to={"proposal-management"} replace/>}/>
+          <Route path="proposal-management" element={<ProposalManageMent/>}/>
+          </Route>
+          <Route index element={<Navigate to={"projectLists"}/>}/>
+          <Route path="projectLists" element={<ProjectLists/>} >
+          </Route>
+          <Route path="projectLists/:id" element={<SingleProjectData/>}/>
         </Route>
       </Routes>
     </QueryClientProvider>

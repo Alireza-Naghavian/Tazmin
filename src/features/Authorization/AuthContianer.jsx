@@ -17,20 +17,17 @@ function AuthContianer() {
     getValues,
   } = useForm();
   const sendOtpHandler = async (data) => {
-    if (seconds === 0 || minutes == 0) {
-      setStep(2);
-    }
     try {
       await sendUserOtp(data, {
         onSuccess: () => {
+          setStep(2);
           setMinutes(1);
           setSeconds(59);
-          setStep(2);
         },
       });
     } catch (error) {
       toast.error(error?.response?.data?.message);
-      // setStep(1);
+     location.reload();
     }
   };
   const renderStep = () => {

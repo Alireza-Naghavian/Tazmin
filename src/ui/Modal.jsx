@@ -1,7 +1,7 @@
 import {  Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { IoMdClose } from "react-icons/io";
-function Modal({ isOpen, setIsOpen, modal_Title, children }) {
+function Modal({ isOpen, setIsOpen, modal_Title, children ,max_w="max-w-md" }) {
   function closeModal() {
     setIsOpen(false);
   }
@@ -33,8 +33,8 @@ function Modal({ isOpen, setIsOpen, modal_Title, children }) {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel
-                  className="w-full max-w-md transform overflow-hidden rounded-2xl
-                 bg-white p-6 text-right font-DanaMedium align-middle  shadow-xl transition-all"
+                  className={`w-full ${max_w} transform overflow-hidden rounded-2xl
+                  bg-white p-6 text-right font-DanaMedium align-middle  shadow-xl transition-all`}
                 >
                   <Dialog.Title
                     as="h3"

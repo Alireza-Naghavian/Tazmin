@@ -14,3 +14,9 @@ export function editProjectApi({ id, newProject }) {
     .patch(`/project/update/${id}`, newProject)
     .then(({ data }) => data.data);
 }
+export const getAllProjectsApi = (qs) => {
+  return http.get(`/project/list${qs}`).then(({ data }) => data.data);
+};
+export const getSingleProjectApi = (id) => {
+  return http.get(`/project/${id}`).then(({ data }) => data.data);
+};

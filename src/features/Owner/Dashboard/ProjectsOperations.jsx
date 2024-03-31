@@ -127,8 +127,17 @@ const EditOperation = ({ isEditOpen, setIsEditOpen, project,register,handleSubmi
   const {categories} =  useGetAllCategories();
   const {editProject,isLoading} =  useEditProject();
   const submitEditHandler = (data)=>{
+    const {budget,category,description,title} = data
+    const sanitizedValue = Number(budget.replace(/,/g, ''));
+    let validData = {
+      title,
+      description,
+      category,
+      budget:sanitizedValue,
+      deadline:new Date(date).toISOString()
+    }
     const newProject = {
-      ...data,tags,deadline:new Date(date).toISOString()
+      ...validData,tags
     }
     editProject({id:project._id,newProject},{
       onSuccess:()=>{

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
+    "@react-spring/web": "^9.7.3",
     "@tanstack/react-query": "^5.28.4",
     "@tanstack/react-query-devtools": "^5.28.4",
     "aos": "^3.0.0-beta.6",
@@ -27,6 +28,7 @@
     "react-router-dom": "^6.22.3",
     "react-tag-input-component": "^2.0.2",
     "react-toastify": "^10.0.5",
+    "react-transition-group": "^4.4.5",
     "swiper": "^11.0.7"
   },
   "devDependencies": {

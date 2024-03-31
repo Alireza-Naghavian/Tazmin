@@ -20,7 +20,6 @@ const useGetAllCategories = ()=>{
         label: item.title,
         value: item.englishTitle,
       }));
-      console.log(data);
       return { isPending, categories, transformedCategories };
 }
 export default  useGetAllCategories
