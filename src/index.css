@@ -28,6 +28,18 @@
   }
 }
 @layer components {
+  .badge--primary {
+    @apply !text-primary-900 !font-DanaBold;
+  }
+  .badge--secondary {
+    @apply !text-secondary-200   !font-DanaBold;
+  }
+  .badge--success {
+    @apply !text-green-400  !font-DanaBold ;
+  }
+  .badge--danger {
+    @apply !text-red-500  !font-DanaBold;
+  }
   .largeBtn {
     @apply w-full inline-flex items-center justify-center font-DanaMedium py-3 px-4;
   }

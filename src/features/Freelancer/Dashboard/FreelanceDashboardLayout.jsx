@@ -1,7 +1,7 @@
 import React from 'react'
 import SideBar from '../../../ui/SideBar'
-import Stats from './Stats'
 import { Outlet } from 'react-router-dom'
+import FreeLanceStat from './FreeLanceStat'
 
 function FreelanceDashboardLayout() {
   return (
@@ -10,7 +10,7 @@ function FreelanceDashboardLayout() {
     <div className="lg:col-span-3 col-span-12 row-span-8 order-3 lg:order-none   min-h-screen"><SideBar/></div>
     <div className="lg:col-span-9 col-span-12 mt-6 lg:mt-0   row-span-2 bg-zinc-200/55 rounded-lg mb-2 shadow-sm">
 
-    <Stats/>
+    <FreeLanceStat/>
     </div>
    <Outlet/>
     </div>
