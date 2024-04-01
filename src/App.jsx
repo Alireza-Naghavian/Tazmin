@@ -22,6 +22,7 @@ import ProjectLists from "./features/Freelancer/ProjectLists";
 import SingleProjectData from "./features/Freelancer/SingleProjectData";
 import AboutUs from "./pages/AboutUs";
 import Not_Found from "./pages/Not_Found";
+import Guide_line from "./pages/Guide_line";
 const queryClient = new QueryClient();
 function App() {
   AOS.init({
@@ -39,6 +40,7 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/about-us" element={<AboutUs/>}/>
         <Route path="*" element={<Not_Found/>}/>
+        <Route path="/guide-line" element={<Guide_line/>}/>
         <Route
           path="/owner/m_menu"
           element={
