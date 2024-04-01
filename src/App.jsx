@@ -23,6 +23,9 @@ import SingleProjectData from "./features/Freelancer/SingleProjectData";
 import AboutUs from "./pages/AboutUs";
 import Not_Found from "./pages/Not_Found";
 import Guide_line from "./pages/Guide_line";
+import AdminLayout from "./features/Admin/dashboard/AdminLayout";
+import AdminDashBoardLayout from "./features/Admin/dashboard/AdminDashBoardLayout";
+import UserManageMent from "./features/Admin/dashboard/UserManageMent";
 const queryClient = new QueryClient();
 function App() {
   AOS.init({
@@ -84,6 +87,13 @@ function App() {
           <Route path="projectLists" element={<ProjectLists/>} >
           </Route>
           <Route path="projectLists/:id" element={<SingleProjectData/>}/>
+        </Route>
+        <Route path="/admin" element={<AdminLayout/>} >
+          <Route index element={<Navigate to={"dashboard"}/>}/>
+          <Route path="dashboard" element={<AdminDashBoardLayout/>}>
+            <Route index element={<UserManageMent/>} />
+          </Route>
+
         </Route>
       </Routes>
     </QueryClientProvider>
