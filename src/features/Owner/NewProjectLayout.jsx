@@ -12,8 +12,8 @@ import useCreateProject from "./hooks/useCreateProject";
 import Loader from "../../ui/Loader";
 import { PiWarningDiamondBold } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
-import { FaPlus } from "react-icons/fa";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import useUser from "../../hooks/useUser";
 function NewProjectLayout() {
   const [renderStep, setRenderStep] = useState(0);
   const [date, setDate] = useState(new Date());
@@ -21,6 +21,7 @@ function NewProjectLayout() {
   const { createProject, isCreateLoading } = useCreateProject();
   const [tags, setTags] = useState([]);
   const navigate = useNavigate();
+  const { isUserLoading, user } = useUser();
   const {
     register,
     reset,
@@ -29,15 +30,15 @@ function NewProjectLayout() {
   } = useForm();
   const { categories } = useGetAllCategories();
   const submitProjectHandler = (data) => {
-    const {budget,category,description,title} = data
-    const sanitizedValue = Number(budget.replace(/,/g, ''));
+    const { budget, category, description, title } = data;
+    const sanitizedValue = Number(budget.replace(/,/g, ""));
     let validData = {
       title,
       description,
       category,
-      budget:sanitizedValue
-    }
-  const newProject = {
+      budget: sanitizedValue,
+    };
+    const newProject = {
       ...validData,
       tags,
       deadline: new Date(date).toISOString(),
@@ -46,7 +47,7 @@ function NewProjectLayout() {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["projects"] });
         reset();
-        navigate("/owner/dashboard/project-management")
+        navigate("/owner/dashboard/project-management");
       },
     });
   };
@@ -55,7 +56,8 @@ function NewProjectLayout() {
       <div className="md:w-[60%] w-full order-2 md:order-1  flex-grow">
         <form
           onSubmit={handleSubmit(submitProjectHandler)}
-          className="flex flex-col">
+          className="flex flex-col"
+        >
           <h2 className="font-DanaBold text-black_base text-2xl leading-[43px]  my-0 mx-0 mb-6">
             ایجاد یک پروژه
           </h2>
@@ -121,7 +123,7 @@ function NewProjectLayout() {
           </div>
         </form>
       </div>
-      <div className="md:w-[40%] order-1 md:order-2 mb-6 md:mb-0 w-full" >
+      <div className="md:w-[40%] order-1 md:order-2 mb-6 md:mb-0 w-full">
         <div className="w-full max-w-[320px] bg-gray_base/25 rounded-lg py-2 px-4">
           <span className="text-black_base flex items-center gap-x-2  mb-2 ">
             <PiWarningDiamondBold />
@@ -133,11 +135,16 @@ function NewProjectLayout() {
           </p>
         </div>
         <div className="flex  max-w-[320px]  mt-6">
-        <button onClick={()=>navigate("/owner/dashboard/project-management")} className="rounded-lg w-full bg-cyan-500 tr-300 hover:bg-blue_base px-2 py-2 flex  items-center gap-x-2 text-white">
-               اتاق کار من (مدیریت پروژه ها)         
-        <FaArrowLeftLong color="white"/>
-        </button>
-      </div>
+          {user && user?.role === "OWNER" && !isUserLoading && (
+            <button
+              onClick={() => navigate("/owner/dashboard/project-management")}
+              className="rounded-lg w-full bg-cyan-500 tr-300 hover:bg-blue_base px-2 py-2 flex  items-center gap-x-2 text-white"
+            >
+              اتاق کار من (مدیریت پروژه ها)
+              <FaArrowLeftLong color="white" />
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

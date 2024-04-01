@@ -2,7 +2,6 @@ import React from 'react'
 import Header from '../../pages/Header'
 import { Outlet } from 'react-router-dom'
 import Footer from '../../ui/Footer'
-
 function FreelancerLayout() {
   return (
     <div>

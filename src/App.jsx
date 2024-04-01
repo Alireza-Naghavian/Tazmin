@@ -26,6 +26,7 @@ import Guide_line from "./pages/Guide_line";
 import AdminLayout from "./features/Admin/dashboard/AdminLayout";
 import AdminDashBoardLayout from "./features/Admin/dashboard/AdminDashBoardLayout";
 import UserManageMent from "./features/Admin/dashboard/UserManageMent";
+import ProtectedRoute from "./features/ProtectedRoute/ProtectedRoute";
 const queryClient = new QueryClient();
 function App() {
   AOS.init({
@@ -68,7 +69,7 @@ function App() {
             />
           }
         />
-        <Route path="/owner" element={<OwnerLayout />}>
+        <Route path="/owner" element={<ProtectedRoute><OwnerLayout /></ProtectedRoute>}>
           <Route index element={<Navigate to="dashboard" />} />
           <Route path="dashboard" element={<OwnerDashboardLayout />}>
             <Route index element={<Navigate to={"project-management"} replace />}/>
@@ -77,7 +78,7 @@ function App() {
           </Route>
           <Route path="new-project" element={<NewProject />} />
         </Route>
-        <Route path="/freelancer" element={<FreelancerLayout/>}>
+        <Route path="/freelancer" element={<ProtectedRoute><FreelancerLayout/> </ProtectedRoute>}>
           <Route  index element={<Navigate to={"freelance-dashboard"}/>}/>
           <Route path="freelance-dashboard" element={<FreelanceDashboardLayout/>} >
           <Route index element={<Navigate to={"proposal-management"} replace/>}/>
@@ -88,7 +89,7 @@ function App() {
           </Route>
           <Route path="projectLists/:id" element={<SingleProjectData/>}/>
         </Route>
-        <Route path="/admin" element={<AdminLayout/>} >
+        <Route path="/admin" element={<ProtectedRoute><AdminLayout/></ProtectedRoute>} >
           <Route index element={<Navigate to={"dashboard"}/>}/>
           <Route path="dashboard" element={<AdminDashBoardLayout/>}>
             <Route index element={<UserManageMent/>} />

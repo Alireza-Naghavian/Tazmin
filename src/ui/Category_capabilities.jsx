@@ -1,7 +1,6 @@
 import React from 'react'
 
 function Category_capabilities({categories}) {
-    console.log(categories);
     return (
     <div className='mt-32'>
        <div className="2xl:gap-9 xl:gap-8 lg:gap-6 sm:gap-[22px] xs:gap-5 xl:mb-[70px] relative">

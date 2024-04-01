@@ -5,6 +5,7 @@ import { MdAvTimer } from "react-icons/md";
 import { BsCardText } from "react-icons/bs";
 import { BiWallet } from "react-icons/bi";
 import LargeBtn from "../../ui/LargeBtn";
+import { GrStatusInfo } from "react-icons/gr";
 import Circle_loader from "../../ui/Circle_loader";
 import Empty from "../../ui/Empty";
 
@@ -13,6 +14,7 @@ function Pr_Lists({ projects ,projectsLoading,increment}) {
     <div>
       {projects && projects.length ? (
         projects.slice(0,increment).map((project) => {
+          console.log(project);
           return (
             <div
               key={project._id}
@@ -62,6 +64,12 @@ function Pr_Lists({ projects ,projectsLoading,increment}) {
                     <BsCardText size={22} className="text-blue_base" />
                     <span className="font-DanaBold leading-7 text-gray_base">
                       {project?.category.title}
+                    </span>
+                  </div>
+                  <div className="flex gap-x-2 ">
+                    <GrStatusInfo  size={22} className="text-blue_base" />
+                    <span className={`font-DanaBold  leading-7 ${project?.status === "OPEN" ? "text-black_base": project?.status === "CLOSED " ? "text-error" : "text-error"} `}>
+                    {project?.status === "OPEN" ? "پروژه باز": "پروژه بسته" }
                     </span>
                   </div>
                   <div className="flex gap-x-2 ">
