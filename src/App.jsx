@@ -20,6 +20,7 @@ import FreelanceDashboardLayout from "./features/Freelancer/Dashboard/FreelanceD
 import ProposalManageMent from "./features/Freelancer/Dashboard/ProposalManageMent";
 import ProjectLists from "./features/Freelancer/ProjectLists";
 import SingleProjectData from "./features/Freelancer/SingleProjectData";
+import AboutUs from "./pages/AboutUs";
 const queryClient = new QueryClient();
 function App() {
   AOS.init({
@@ -35,6 +36,7 @@ function App() {
         <Route path="/" element={<AuthContianer />}></Route>
         <Route path="complete-profile" element={<CompleteProfile />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/about-us" element={<AboutUs/>}/>
         <Route
           path="/owner/m_menu"
           element={
