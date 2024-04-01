@@ -6,7 +6,7 @@ function Modal({ isOpen, setIsOpen, modal_Title, children ,max_w="max-w-md" }) {
     setIsOpen(false);
   }
   return (
-    <div>
+  
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
@@ -50,7 +50,7 @@ function Modal({ isOpen, setIsOpen, modal_Title, children ,max_w="max-w-md" }) {
           </div>
         </Dialog>
       </Transition>
-    </div>
+ 
   );
 }
 

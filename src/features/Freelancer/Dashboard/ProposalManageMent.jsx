@@ -23,14 +23,14 @@ function ProposalManageMent() {
       <div className="lg:col-span-9 col-span-12  row-span-6 bg-gray_base/25 max-h-[550px] overflow-y-auto overflow-x-auto bg-slate-50 rounded-lg shadow-md w-full px-4 xl:px-20 pb-6">
         <div className="flex justify-end   ml-0  mt-6">
           <button
-            onClick={() => navigate("/owner/new-project")}
+            onClick={() => navigate("/freelancer/projectLists")}
             className="rounded-lg  w-full sm:w-auto bg-cyan-500 tr-300 hover:bg-blue_base px-2 py-2 flex justify-center sm:justify-normal  items-center gap-x-2 text-white"
           >
               رفتن به صفحه پروژه ها
             <FaArrowLeftLong  color="white" />
           </button>
         </div>
-        <Empty resourceName={"پروژه ای"} />
+        <Empty resourceName={"پیشنهادی "} />
       </div>
     );
   return (

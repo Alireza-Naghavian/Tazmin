@@ -74,9 +74,9 @@ function CompleteProfile() {
               }}
             />
             <ul className="mt-5 mr-6 list-disc list child:text-xs flex flex-col gap-y-2 child:font-DanaMedium">
-              <li>امکان تغییر نام کاربری وجود نخواهد داشت.</li>
+              <li>امکان تغییر نام کاربری وجود دارد.</li>
               <li>نام کاربری هم میتواند انگلیسی و هم فارسی باشد.</li>
-              <li>امکان تغییر ایمیل کاربری وجود نخواهد داشت.</li>
+              <li>امکان تغییر ایمیل کاربری وجود دارد.</li>
             </ul>
             {/* radio role inputs */}
             <div className="flex gap-6">

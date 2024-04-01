@@ -21,7 +21,7 @@ function Pr_Lists({ projects ,projectsLoading,increment}) {
               <div className="flex md:flex-row flex-col gap-8 justify-between">
                 <div className="flex flex-col gap-4">
                   {/* project title */}
-                  <Link className="text-blue_base font-DanaMedium text-lg w-fit cursor-pointer">
+                  <Link to={project?._id} className="text-blue_base font-DanaMedium text-lg w-fit cursor-pointer">
                     {project?.title}
                   </Link>
                   {/* project desc */}
