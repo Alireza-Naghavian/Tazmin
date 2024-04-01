@@ -17,7 +17,7 @@ function OwnerProjectsRow({project}) {
       <td><ChangeStatusProjects project={project} project_id={project?._id}/></td>
       <td><ProjectsOperations project={project}/></td>
       <td onClick={()=>setIsDetailOpen(true)}><BiSolidDetail  size={24} className='text-gray_base cursor-pointer flex' /></td>
-      <td onClick={()=>navigate("/owner/dashboard/review-proposals")} ><FaFileContract className='text-gray_base cursor-pointer flex' size={24}/></td>
+      <td onClick={()=>navigate(`/owner/dashboard/review-proposals/${project._id}`)} ><FaFileContract className='text-gray_base cursor-pointer flex' size={24}/></td>
 
      {isDetailOpen && <DetailData project={project} setIsDetailOpen={setIsDetailOpen} isDetailOpen={isDetailOpen}/>}
   </Table.Row>

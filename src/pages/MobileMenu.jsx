@@ -12,7 +12,7 @@ function MobileMenu() {
       <div className="p-4 ">
         <div className="absolute h-full  w-full left-0 -z-10 bottom-0 bg-no-repeat bg-cover  ">
           <div className="bg-gradient-to-t from-[#ffffffa6] -from-1% to-white to-90% absolute w-full h-full z-10"></div>
-        <img src="../../public/menu-photo/header-image.png" className="h-full object-cover" alt="" />
+        <img src="/menu-photo/header-image.png" className="h-full object-cover" alt="" />
         </div>
         {/* mobile nav-item */}
         <Link to={"/owner/m_menu"} className="flex justify-between items-center gap-2 py-4 px-2 ">

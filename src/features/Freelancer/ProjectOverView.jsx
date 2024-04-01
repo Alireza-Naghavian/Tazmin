@@ -5,16 +5,18 @@ import Send_req_form from './Send_req_form'
 
 function ProjectOverView({project}) {
     const [isOpen,setIsOpen] = useState(false)
-
-  return (
+  const filterProposals = project?.proposals.filter((proposal)=> proposal?.status === 2)
+ console.log(filterProposals);
+    return (
      
     <div className="overview  ">
     <div className="flex flex-col gap-y-5 sm:px-12 px-6 py-8 md:py-[56px] ">
       {/*overview header */}
       <div className="flex flex-col items-start gap-y-2">
-        <span className={`px-2 py-1 rounded-lg text-sm ${project?.status === "OPEN" ? "bg-blue_base" : "bg-error"} text-white`}>
+        {filterProposals && filterProposals.length ? <span className='text-white bg-error px-2 py-1 rounded-lg text-sm'>پروژه واگذار شده</span> :
+         <span className={`px-2 py-1 rounded-lg text-sm ${project?.status === "OPEN" ? "bg-blue_base" : "bg-error"} text-white`}>
           {project?.status === "OPEN" ? "پروژه باز" : "پروژه بسته"}
-          </span>
+          </span>}
         <h2 className='text-start mt-4 font-DanaBold text-2xl text-black_base '>{project?.title}</h2>
       </div>
       {/* owner data  & category title*/}
@@ -73,16 +75,14 @@ function ProjectOverView({project}) {
           </span>
           {/* send request btn */}
           <div className="w-full hidden md:block rounded-bl-lg  h-full">
-            <button onClick={()=>setIsOpen(true)} className='bg-blue_base/65  hover:bg-blue_base 
+            <button disabled={filterProposals&& filterProposals?.length} onClick={()=>setIsOpen(true)} className='bg-blue_base/65  hover:bg-blue_base 
              tr-300 rounded-bl-lg lg:px-12 px-8 text-lg
              flex gap-x-2 items-center text-white lg:w-full w-[210px] h-full'>
             <span>ارسال پیشنهاد</span>
             <BsArrowLeft size={32} />
             </button>
           {isOpen && <Modal isOpen={isOpen} max_w='max-w-3xl' setIsOpen={setIsOpen} modal_Title={"ارسال پیشنهاد"}>
-
-            <Send_req_form setIsOpen={setIsOpen} projectId={project?._id}/>
-
+            <Send_req_form setIsOpen={setIsOpen} project={project} projectId={project?._id}/>
             </Modal>}
           </div>
         </div>

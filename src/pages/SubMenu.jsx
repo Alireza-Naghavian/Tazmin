@@ -70,7 +70,7 @@ function SubMenu({mainSubItem,mainSubDesc,secondSubItem,secondSubDesc,lastSubIte
         <div className="absolute h-full w-[600px] left-0 top-0 ">
           <div className="absolute  z-10 w-full h-full bg-gradient-to-r from-[#ffffffa6] from-1% to-white to-90% "></div>
           <img
-            src={`../../public/menu-photo/${bg_img}`}
+            src={`/menu-photo/${bg_img}`}
             loading="lazy"
             className="absolute h-full w-full inset-0 object-cover text-transparent  "
             alt="header-img"

@@ -64,7 +64,7 @@ function App() {
           <Route path="dashboard" element={<OwnerDashboardLayout />}>
             <Route index element={<Navigate to={"project-management"} replace />}/>
             <Route path="project-management" element={<ProjectManagement />}/>
-            <Route path="review-proposals" element={<Review_Proposals />} />
+            <Route path="review-proposals/:id" element={<Review_Proposals />} />
           </Route>
           <Route path="new-project" element={<NewProject />} />
         </Route>

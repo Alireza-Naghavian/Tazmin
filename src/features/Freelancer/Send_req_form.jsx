@@ -8,6 +8,7 @@ import useSendReq from "./hooks/useSendReq";
 import Loader from "../../ui/Loader";
 
 function Send_req_form({ setIsOpen, projectId }) {
+
   const [price, setPrice] = useState(null);
   const {sendLoading,sendProposal} = useSendReq()
   let servicePay = Number(price / 10);
