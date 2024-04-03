@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Small_Blue_base_Btn from "./Small_Blue_base_Btn";
 
-function Owner_Freelancer_Banner({ role, title, desc, cover, btn_title }) {
+function Owner_Freelancer_Banner({ role, title, desc, cover, btn_title,target_link }) {
+
   return (
     <div className="2xl:gap-[96px] md: flex flex-col md:flex-row md:p-[56px] sm:p-6 sm:px-4 xs:py-2 mt-24 bg-[#f8f8f8] rounded-lg sm:rounded-3xl">
       <div className="flex 2xl:gap-8 lg:gap-7 justify-center flex-col xs:px-2 sm:px-0 sm:pr-8">
@@ -16,7 +17,7 @@ function Owner_Freelancer_Banner({ role, title, desc, cover, btn_title }) {
           {desc}
         </p>
         <div className="block items-center w-full lg:-mt-10">
-          <Link>
+          <Link to={target_link}>
             <Small_Blue_base_Btn px="px-8" py="py-3">
               {btn_title}
             </Small_Blue_base_Btn>

@@ -14,7 +14,6 @@ function Pr_Lists({ projects ,projectsLoading,increment}) {
     <div>
       {projects && projects.length ? (
         projects.slice(0,increment).map((project) => {
-          console.log(project);
           return (
             <div
               key={project._id}

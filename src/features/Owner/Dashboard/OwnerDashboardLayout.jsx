@@ -8,7 +8,7 @@ function OwnerDashboardLayout() {
   const {user} =  useUser();
   const navigate = useNavigate();
  useEffect(()=>{
-  if(user && user?.role !== "OWNER") ( navigate("/home",{replace:true}) )
+  if(user && user?.role !== "OWNER") ( navigate("/*",{replace:true}) )
  },[navigate,user])
   return (
     <div className="w-full sm:px-16 xs:px-3 relative pt-12 pb-9  ">

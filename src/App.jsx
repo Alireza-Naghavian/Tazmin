@@ -32,12 +32,10 @@ function App() {
   AOS.init({
     delay: 500, 
     duration: 600, 
-    
   });
   return (
     <QueryClientProvider client={queryClient}>
       <ToastContainer rtl={true} />
-
       <Routes>
         <Route path="/" element={<AuthContianer />}></Route>
         <Route path="complete-profile" element={<CompleteProfile />} />
@@ -54,6 +52,9 @@ function App() {
               base_color={"border-blue_base"}
               second_item={"مشاهده پروژه های ایجاد شده"}
               last_item={"مشاهده درخواست های  فریلنسر ها"}
+              target_link_1={"/owner/new-project"}
+              target_link_2={"/owner"}
+            
             />
           }
         />
@@ -66,6 +67,8 @@ function App() {
               base_color={"border-error"}
               second_item={"مشاهده درخواست ها ارسال شده"}
               last_item={"مشاهده پروژه های کارفرمایان"}
+              target_link_1={"/freelancer/projectLists"}
+              target_link_2={"/freelancer"}
             />
           }
         />
@@ -97,6 +100,7 @@ function App() {
 
         </Route>
       </Routes>
+   
     </QueryClientProvider>
   );
 }
