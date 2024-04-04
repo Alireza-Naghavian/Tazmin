@@ -43,7 +43,7 @@ function SideBar() {
   ];
   return (
     <div
-      className={`shadow-md bg-gray_base/10 w-full h-full rounded-xl flex flex-col  pt-10 px-7 pb-6 ${
+      className={`shadow-md bg-gray_base/10 w-full h-full rounded-xl flex flex-col  pt-10 px-7 max-h-[500px] lg:max-h-max pb-6 ${
         isUserLoading ? "  z-50 blur-sm" : ""
       }`}
     >

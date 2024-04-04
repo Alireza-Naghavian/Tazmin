@@ -8,7 +8,9 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useSendOtp from "./hooks/useSendOtp";
 import useCountDownTimer from "./hooks/useCountDownTimer";
+import { useCookies } from "react-cookie";
 function CheckOtpForm({ setStep, phoneNumber, resendOtp, minutes, seconds }) {
+  const [cookies,setCookie] = useCookies(["userLogin"]);
   const {
     minutes: resendMinutes,
     seconds: resendSeconds,
@@ -25,6 +27,11 @@ function CheckOtpForm({ setStep, phoneNumber, resendOtp, minutes, seconds }) {
   const { checkOtp, isCheckLoading } = useCheckOtp();
   const { sendUserOtp } = useSendOtp();
   const [otp, setOtp] = useState("");
+  const setCookieHandler = ()=>{
+    const exp = new Date();
+    exp.setDate(exp.getDate() + 2);
+    setCookie("userLogin","userLoggedIn" , {path:"/",expires:exp})
+  }
   const resendHandler = async () => {
     await sendUserOtp(
       { phoneNumber },
@@ -41,6 +48,9 @@ function CheckOtpForm({ setStep, phoneNumber, resendOtp, minutes, seconds }) {
     setSeconds(59);
     try {
       const data = await checkOtp({ phoneNumber, otp });
+      if(data.message.success) {
+        setCookieHandler();
+      }
       if (data.message.success === false) {
         throw new Error(JSON.stringify(data.message.message));
       }
