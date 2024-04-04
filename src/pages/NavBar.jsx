@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { FiBriefcase, FiMonitor } from "react-icons/fi";
 import { TbPointFilled } from "react-icons/tb";
 import SubMenu from "./SubMenu";
+import { Link } from "react-router-dom";
 function NavBar() {
   const [isOwnerActive, setIsOwnerActive] = useState(false);
   const [isFreelanceActive, setIsFreelanceActive] = useState(false);
   return (
     <nav className=" hidden md:block ">
-      <ul className="md:flex hidden m-0 h-full  gap-6   ">
+      <ul className="md:flex hidden m-0 h-full  gap-6">
    
         <li
           className={`nav-item  `}
@@ -27,6 +28,7 @@ function NavBar() {
           {isOwnerActive && (
             <SubMenu
               mainSubItem={"ایجاد پروژه"}
+              isOwnerActive={isOwnerActive}
               mainSubDesc={
                 "با ایجاد پروژه امکان تعامل با نیروی متخصص مورد نظر را خواهید داشت."
               }
@@ -60,6 +62,7 @@ function NavBar() {
             <SubMenu
               mainSubItem={"ارسال درخواست و پروپوزال"}
               base_color={"border-error"}
+              isFreelanceActive={isFreelanceActive}
               mainSubDesc={
                 "پروژه های کارفرمایان را مشاهده کرده و متناسب با توانایی های خود پیشنهاد ارسال کنید"
               }
@@ -72,18 +75,18 @@ function NavBar() {
           )}
         </li>
 
-        <li className="nav-item">
+        <li className="nav-item !w-fit">
           <div className=" relative flex items-center h-full">
-            <div className="nav-title text-gray-800 font-DanaBold flex group items-center gap-2">
+            <Link to={"/about-us"} className="nav-title text-gray-800 font-DanaBold flex group items-center gap-2">
               <span className="nav-item-title">درباره تضمین</span>
-            </div>
+            </Link>
           </div>
         </li>
-        <li className="nav-item">
+        <li className="nav-item !w-fit">
           <div className=" relative flex items-center h-full">
-            <div className=" nav-title text-gray-800 font-DanaBold flex group items-center gap-2">
+            <Link to={"/guide-line"} className=" nav-title text-gray-800 font-DanaBold flex group items-center gap-2">
               <span className="nav-item-title">راهنما</span>
-            </div>
+            </Link>
           </div>
         </li>
       </ul>

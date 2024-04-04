@@ -12,10 +12,10 @@ function Footer() {
         
             <div className="">
               <div className="my-4 sm:mx-0  flex   justify-center font-DanaMedium text-gray_base gap-x-4  ">
-                <Link>
+                <Link to={"/guide-line"}>
                   <span className="w-full h-full text-base ">راهنما</span>
                 </Link>
-                <Link>
+                <Link to={"/about-us"}>
                   <span className="w-full h-full text-base ">درباره تضمین</span>
                 </Link>
               </div>

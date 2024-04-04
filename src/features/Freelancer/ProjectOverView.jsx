@@ -2,11 +2,22 @@ import React, { useState } from 'react'
 import { BsArrowLeft } from 'react-icons/bs'
 import Modal from '../../ui/Modal'
 import Send_req_form from './Send_req_form'
+import { toast } from 'react-toastify'
 
 function ProjectOverView({project}) {
     const [isOpen,setIsOpen] = useState(false)
   const filterProposals = project?.proposals.filter((proposal)=> proposal?.status === 2)
- console.log(filterProposals);
+  const clickHandler = ()=>{
+    if(filterProposals&& filterProposals?.length ){
+   return  toast.error("پروژه واگذار شده است.")
+    }
+    if( project?.status === "CLOSED"){
+   return   toast.error("پروژه توسط کارفرما بسته شده است.")
+    }
+    else{
+   return  setIsOpen(true)
+    }
+  }
     return (
      
     <div className="overview  ">
@@ -75,7 +86,7 @@ function ProjectOverView({project}) {
           </span>
           {/* send request btn */}
           <div className="w-full hidden md:block rounded-bl-lg  h-full">
-            <button disabled={filterProposals&& filterProposals?.length} onClick={()=>setIsOpen(true)} className='bg-blue_base/65  hover:bg-blue_base 
+            <button  onClick={()=>clickHandler()} className='bg-blue_base/65  hover:bg-blue_base 
              tr-300 rounded-bl-lg lg:px-12 px-8 text-lg
              flex gap-x-2 items-center text-white lg:w-full w-[210px] h-full'>
             <span>ارسال پیشنهاد</span>

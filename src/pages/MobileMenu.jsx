@@ -35,7 +35,7 @@ function MobileMenu() {
           <TiPlus className="w-2 h-4 text-blue_base" />
         </Link>
         <hr  className="h-[2px] w-full bg-white/40"/>
-        <Link className="flex justify-between items-center gap-2 py-4 px-2 ">
+        <Link to={"/about-us"} className="flex justify-between items-center gap-2 py-4 px-2 ">
           <div>
             <span className="sm:text-sm text-xs font-DanaBold leading-7 m-0">
               درباره تضمین
@@ -44,7 +44,7 @@ function MobileMenu() {
           <TiPlus className="w-2 h-4 text-blue_base" />
         </Link>
         <hr  className="h-[2px] w-full bg-white/40"/>
-        <Link className="flex justify-between items-center gap-2 py-4 px-2 ">
+        <Link to={"/guide-line"} className="flex justify-between items-center gap-2 py-4 px-2 ">
           <div>
             <span className="sm:text-sm text-xs font-DanaBold leading-7 m-0">
               راهنما

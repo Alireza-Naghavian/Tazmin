@@ -1,6 +1,5 @@
 import React from 'react'
 import Stats from '../../../ui/Stats'
-import { MdOutlineAccountBalanceWallet } from 'react-icons/md'
 import useUserList from '../hooks/useUserList'
 import { FaUsers } from "react-icons/fa";
 import { RiPassValidLine } from "react-icons/ri";

@@ -1,8 +1,15 @@
-import { Outlet } from "react-router-dom"
+import { Outlet, useNavigate } from "react-router-dom"
 import SideBar from "../../../ui/SideBar"
 import Stat from "../Stat"
+import useUser from "../../../hooks/useUser"
+import { useEffect } from "react";
 
 function OwnerDashboardLayout() {
+  const {user} =  useUser();
+  const navigate = useNavigate();
+ useEffect(()=>{
+  if(user && user?.role !== "OWNER") ( navigate("/*",{replace:true}) )
+ },[navigate,user])
   return (
     <div className="w-full sm:px-16 xs:px-3 relative pt-12 pb-9  ">
         <div className="grid grid-cols-12 lg:grid-rows-8 gap-x-4 lg:gap-y-0  gap-y-6">

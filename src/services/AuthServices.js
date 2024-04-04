@@ -23,3 +23,6 @@ export const logOutUserProfileApi = () => {
   return http.post("/user/logout").then(({ data }) => data.data);
 };
 
+export const getUserTokenApi = () => {
+  return http.get("/user/refresh-token").then(({ data }) => data.data);
+};

@@ -21,6 +21,7 @@ function Home() {
         }
         btn_title={"ایجاد پروژه"}
         cover={"employer_final.png"}
+        target_link={"/owner/new-project"}
       />
       <Tazmin_grid_properties/>
         <Owner_Freelancer_Banner
@@ -29,6 +30,7 @@ function Home() {
         desc={"تضمین به شما کمک می‌کند تا علاوه بر داشتن یک رزومه‌ی کاری تاثیرگذار به راحتی از طریق جستوجو و ارسال پیشنهاد در پروژه‌ها کسب درآمد کنید."}
         btn_title={"لیست پروژه ها"}
         cover={"freelancer_final.png"}
+        target_link={"/freelancer/projectLists"}
     />
 
     </div>

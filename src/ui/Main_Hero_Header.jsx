@@ -29,15 +29,15 @@ function Main_Hero_Header({ user, isUserLoading }) {
           باشید.
         </p>
         {user?.role === "FREELANCER" ? (
-          <Link>
+          <Link to={"/freelancer/projectLists"}>
             <Small_Blue_base_Btn>لیست پروژه ها</Small_Blue_base_Btn>
           </Link>
         ) : user?.role === "OWNER" ? (
-          <Link>
+          <Link to={"/owner/new-project"} >
             <Small_Blue_base_Btn>ایجاد سریع پروژه</Small_Blue_base_Btn>
           </Link>
         ) : user?.role === "ADMIN" ? (
-          <Link>
+          <Link to={"/admin"}>
             <Small_Blue_base_Btn>ورود به پنل ادمین</Small_Blue_base_Btn>
           </Link>
         ) : (
