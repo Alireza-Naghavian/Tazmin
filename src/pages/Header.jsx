@@ -5,6 +5,7 @@ import MobileMenu from "./MobileMenu";
 import { IoMdClose } from "react-icons/io";
 import { useState } from "react";
 import TazminLinkLogo from "../ui/TazminLinkLogo";
+import UserDataDropDown from "../features/Authorization/UserDataDropDown";
 
 
 function Header() {
@@ -33,6 +34,7 @@ if(isMenuActive){
       )}
      <TazminLinkLogo/>
       <NavBar />
+      <UserDataDropDown/>
     </div>
   );
 }
