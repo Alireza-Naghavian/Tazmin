@@ -2,9 +2,6 @@
 
 import { Menu, Transition } from "@headlessui/react"
 import { Fragment, useEffect } from "react"
-import {} from "react-icons"
-import { HiOutlineAcademicCap } from "react-icons/hi"
-import { Md10K } from "react-icons/md"
 import useUser from "../../hooks/useUser"
 import { IoChevronDown } from "react-icons/io5";
 import truncateText from "../../utils/truncateText"
@@ -12,26 +9,16 @@ import { BsPersonWorkspace } from "react-icons/bs";
 import { useNavigate } from "react-router"
 import { RiLogoutBoxLine } from "react-icons/ri"
 import { useCookies } from "react-cookie"
-import { useMutation } from "@tanstack/react-query"
-import { logOutUserProfileApi } from "../../services/AuthServices"
+import useLogout from "../../hooks/useLogout"
 function UserDataDropDown() {
     const {user} = useUser();
-    const [cookies,setCookie] = useCookies(["userLogin"]);
+    const [cookies] = useCookies(["userLogin"]);
     const navigate = useNavigate();
-    const setCookieHandler = ()=>{
-        const exp = new Date();
-        exp.setDate(exp.getDate() - 2);
-        setCookie("userLogin","userLoggedIn" , {path:"/",expires:exp})
-      }
+    const {LogOut,setCookieHandler} = useLogout();
       useEffect(()=>{
         if(!cookies.userLogin) navigate("/",{replace:true})
       },[cookies,navigate])
-      const { mutateAsync: LogOut } = useMutation({
-        mutationFn: logOutUserProfileApi,
-        onSuccess: () => {
-          navigate("/");
-        },
-      });
+     
     const logOutHandler = ()=>{
         setCookieHandler()
         LogOut();

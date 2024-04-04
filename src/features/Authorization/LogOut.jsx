@@ -5,23 +5,10 @@ import { logOutUserProfileApi } from "../../services/AuthServices";
 import Loader from "../../ui/Loader";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import useLogout from "../../hooks/useLogout";
 
 function LogOut({ isOpen, setIsOpen }) {
-  const [cookies,setCookie] = useCookies(["userLogin"]);
-  const navigate = useNavigate();
-  const setCookieHandler = ()=>{
-    const exp = new Date();
-    exp.setDate(exp.getDate() - 2);
-    setCookie("userLogin","userLoggedIn" , {path:"/",expires:exp})
-  }
-  const { mutateAsync: LogOut } = useMutation({
-    mutationFn: logOutUserProfileApi,
-    onSuccess: () => {
-      setIsOpen(false);
-      navigate("/");
-    },
-  });
-
+ const {LogOut,setCookieHandler} =  useLogout()
   const logOutHandler = () => {
     setCookieHandler()
     LogOut();
