@@ -35,7 +35,7 @@ function StepForm_1({ categories, register, setRenderStep }) {
               }`}
                 htmlFor={item?.label}
               >
-                <img src={item?.icon[0]} className="w-6 h-6" alt="" />
+                <img src={item?.icon} className="w-6 h-6" alt="" />
                 {item?.label}
               </label>
             </div>
