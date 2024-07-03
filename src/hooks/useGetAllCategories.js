@@ -13,7 +13,7 @@ const useGetAllCategories = ()=>{
       const categories = rawCategories.map((item) => ({
         label: item.title,
         value: item._id,
-        icon:item.icon.lg
+        icon:item.icon.sm
       }));
     
       const transformedCategories = rawCategories.map((item) => ({
