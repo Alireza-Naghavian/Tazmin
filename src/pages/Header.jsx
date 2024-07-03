@@ -49,7 +49,7 @@ if(isMenuActive){
       <RiLogoutBoxLine onClick={()=> logoutHandler()}  size={28} className="text-gray_base hidden sm:block "/>
       <PiUserCircle onClick={()=>
           user && user?.role === "OWNER" ? navigate("/owner") :
-          user && user?.role === "FREELANCER" ? navigate("freelancer") :
+          user && user?.role === "FREELANCER" ? navigate("/freelancer") :
           user && user?.role === "AMDIN" ? navigate("/admin") : ""  
       }  size={36} className="text-gray_base  w-14" />
       </div>
