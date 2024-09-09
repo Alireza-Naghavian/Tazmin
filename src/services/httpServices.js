@@ -25,13 +25,10 @@ api.interceptors.response.use(
     if (err.response.status === 401 && !original_config.retry) {
       original_config.retry = true; //aviodance from infinite loop
       try {
-        const user = http.get("/user/profile").then(({ data }) => data.data);
-        if ( user && user?.isActive && user?.status === 2) {
-          const { data } = await axios.get(`${Base_Url}/user/refresh-token`, {
-            withCredentials: true,
-          });
-          if (data) return api(original_config);
-        }
+        const { data } = await axios.get(`${Base_Url}/user/refresh-token`, {
+          withCredentials: true,
+        });
+        if (data) return api(original_config);
       } catch (error) {
         return Promise.reject(error);
       }
