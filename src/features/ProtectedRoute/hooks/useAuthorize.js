@@ -8,7 +8,7 @@ const useAuthorize =()=>{
   if(user) isAuthenticated = true;
   let isAuthorized = false
   let isVerified = false
-  if(user&& Number(user.status === 2)) isVerified = true;
+  if(user&& Number(user?.status === 2)) isVerified = true;
 
   const ROLES = {
     admin: "ADMIN",

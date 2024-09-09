@@ -1,5 +1,6 @@
 import axios from "axios";
-const Base_Url = "http://localhost:5000/api";
+import useUser from "../hooks/useUser";
+const Base_Url = import.meta.env.VITE_BASE_URL;
 const api = axios.create({
   baseURL: Base_Url,
   withCredentials: true,
@@ -25,10 +26,13 @@ api.interceptors.response.use(
     if (err.response.status === 401 && !original_config.retry) {
       original_config.retry = true; //aviodance from infinite loop
       try {
-        const { data } = await axios.get(`${Base_Url}/user/refresh-token`, {
-          withCredentials: true,
-        });
-        if (data) return api(original_config);
+        const { user, isUserLoading } = useUser();
+        if (!isUserLoading && user && user?.isActive && user?.status === 2) {
+          const { data } = await axios.get(`${Base_Url}/user/refresh-token`, {
+            withCredentials: true,
+          });
+          if (data) return api(original_config);
+        }
       } catch (error) {
         return Promise.reject(error);
       }

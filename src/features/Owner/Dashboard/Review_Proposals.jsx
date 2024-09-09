@@ -10,7 +10,6 @@ function Review_Proposals() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { project, projectLoading } = useGetSingleProject(id);
-  console.log(project);
   if (projectLoading)
     return (
       <div className="w-full lg:col-span-9 col-span-12 flex justify-center items-center relative  row-span-5">

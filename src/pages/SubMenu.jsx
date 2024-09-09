@@ -81,7 +81,6 @@ const AccessLink = ({
   linkItem,
   linkDesc,
 }) => {
-  console.log(user);
   return (
     <Link
       to={`${

@@ -62,7 +62,6 @@ function CheckOtpForm({ setStep, phoneNumber, resendOtp, minutes, seconds }) {
       }
       return toast.success([data.message.message]);
     } catch (error) {
-      console.log(error);
       if (!error.response) {
         toast.error(JSON.parse(error.message));
       } else {
