@@ -20,7 +20,6 @@ function StepForm_2({ tags, setTags, register, errors }) {
         
         classNames={"placeholder:text-xs"}
         placeHolder="پس از نوشتن مهارت اینتر را فشار دهید."
-        onKeyUp={handleKeyDown}
       />
       <span className="text-xs font-Dana text-gray_base mr-2 mt-2">
         مهارت های موردنیاز پروژه را اضافه کنید تا فریلنسرها از آن مطلع شوند.
