@@ -11,7 +11,7 @@ function AuthContianer() {
   const [step, setStep] = useState(1);
   const { isSendLoading, error, sendUserOtp } = useSendOtp();
   // const [cookies] = useCookies(["userLogin"]);
-  const { userLogin } = cookies;
+  // const { userLogin } = cookies;
   const { setMinutes, setSeconds, minutes, seconds } = useCountDownTimer();
   const navigate = useNavigate();
   // useEffect(() => {
