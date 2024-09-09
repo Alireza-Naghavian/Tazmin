@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import OtpInput from "react-otp-input";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import LargeBtn from "../../ui/LargeBtn";
 import Loader from "../../ui/Loader";
 import useCheckOtp from "./hooks/useCheckOtp";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import useSendOtp from "./hooks/useSendOtp";
 import useCountDownTimer from "./hooks/useCountDownTimer";
-import { useCookies } from "react-cookie";
+import useSendOtp from "./hooks/useSendOtp";
 function CheckOtpForm({ setStep, phoneNumber, resendOtp, minutes, seconds }) {
-  const [cookies,setCookie] = useCookies(["userLogin"]);
+  // const [cookies,setCookie] = useCookies(["userLogin"]);
   const {
     minutes: resendMinutes,
     seconds: resendSeconds,
@@ -28,9 +27,10 @@ function CheckOtpForm({ setStep, phoneNumber, resendOtp, minutes, seconds }) {
   const { sendUserOtp } = useSendOtp();
   const [otp, setOtp] = useState("");
   const setCookieHandler = ()=>{
-    const exp = new Date();
-    exp.setDate(exp.getDate() + 2);
-    setCookie("userLogin","userLoggedIn" , {path:"/",expires:exp})
+    // const exp = new Date();
+    console.log("text");
+    // exp.setDate(exp.getDate() + 4);
+    // setCookie("userLogin","userLoggedIn" , {path:"/",expires:exp})
   }
   const resendHandler = async () => {
     await sendUserOtp(

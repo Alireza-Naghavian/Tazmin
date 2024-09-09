@@ -1,25 +1,24 @@
-import { useEffect, useState } from "react";
-import Auth from "../../pages/Auth";
-import SendOtpForm from "./SendOtpForm";
-import CheckOtpForm from "./CheckOtpForm";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import useSendOtp from "./hooks/useSendOtp";
-import useCountDownTimer from "./hooks/useCountDownTimer";
-import { toast } from "react-toastify";
-import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
+import Auth from "../../pages/Auth";
+import CheckOtpForm from "./CheckOtpForm";
+import useCountDownTimer from "./hooks/useCountDownTimer";
+import useSendOtp from "./hooks/useSendOtp";
+import SendOtpForm from "./SendOtpForm";
 function AuthContianer() {
   const [step, setStep] = useState(1);
   const { isSendLoading, error, sendUserOtp } = useSendOtp();
-  const [cookies] = useCookies(["userLogin"]);
+  // const [cookies] = useCookies(["userLogin"]);
   const { userLogin } = cookies;
   const { setMinutes, setSeconds, minutes, seconds } = useCountDownTimer();
   const navigate = useNavigate();
-  useEffect(() => {
-    if (userLogin) {
-      navigate("/home", { replace: true });
-    }
-  }, [cookies.userLogin, navigate]);
+  // useEffect(() => {
+  //   if (userLogin) {
+  //     navigate("/home", { replace: true });
+  //   }
+  // }, [cookies.userLogin, navigate]);
   const {
     register,
     handleSubmit,
@@ -37,7 +36,7 @@ function AuthContianer() {
       });
     } catch (error) {
       toast.error(error?.response?.data?.message);
-      location.reload();
+      // location.reload();
     }
   };
 

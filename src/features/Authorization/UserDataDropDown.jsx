@@ -1,23 +1,22 @@
 // import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
-import { Menu, Transition } from "@headlessui/react"
-import { Fragment, useEffect } from "react"
-import useUser from "../../hooks/useUser"
-import { IoChevronDown } from "react-icons/io5";
-import truncateText from "../../utils/truncateText"
+import { Menu, Transition } from "@headlessui/react";
+import { Fragment } from "react";
 import { BsPersonWorkspace } from "react-icons/bs";
-import { useNavigate } from "react-router"
-import { RiLogoutBoxLine } from "react-icons/ri"
-import { useCookies } from "react-cookie"
-import useLogout from "../../hooks/useLogout"
+import { IoChevronDown } from "react-icons/io5";
+import { RiLogoutBoxLine } from "react-icons/ri";
+import { useNavigate } from "react-router";
+import useLogout from "../../hooks/useLogout";
+import useUser from "../../hooks/useUser";
+import truncateText from "../../utils/truncateText";
 function UserDataDropDown() {
     const {user} = useUser();
-    const [cookies] = useCookies(["userLogin"]);
+    // const [cookies] = useCookies(["userLogin"]);
     const navigate = useNavigate();
     const {LogOut,setCookieHandler} = useLogout();
-      useEffect(()=>{
-        if(!cookies.userLogin) navigate("/",{replace:true})
-      },[cookies,navigate])
+      // useEffect(()=>{
+      //   if(!cookies.userLogin) navigate("/",{replace:true})
+      // },[cookies,navigate])
      
     const logOutHandler = ()=>{
         setCookieHandler()

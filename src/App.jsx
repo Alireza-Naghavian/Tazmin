@@ -1,33 +1,32 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-import "./index.css";
-import "swiper/css";
-import "react-toastify/dist/ReactToastify.css";
-import AuthContianer from "./features/Authorization/AuthContianer";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "swiper/css";
+import AdminDashBoardLayout from "./features/Admin/dashboard/AdminDashBoardLayout";
+import AdminLayout from "./features/Admin/dashboard/AdminLayout";
+import UserManageMent from "./features/Admin/dashboard/UserManageMent";
+import AuthContianer from "./features/Authorization/AuthContianer";
 import CompleteProfile from "./features/Authorization/CompleteProfile";
-import SubMobileMenu from "./pages/SubMobileMenu";
-import HomePage from "./pages/HomePage";
-import OwnerLayout from "./features/Owner/OwnerLayout";
-import NewProject from "./features/Owner/NewProject";
+import FreelanceDashboardLayout from "./features/Freelancer/Dashboard/FreelanceDashboardLayout";
+import ProposalManageMent from "./features/Freelancer/Dashboard/ProposalManageMent";
+import FreelancerLayout from "./features/Freelancer/FreelancerLayout";
+import ProjectLists from "./features/Freelancer/ProjectLists";
+import SingleProjectData from "./features/Freelancer/SingleProjectData";
 import OwnerDashboardLayout from "./features/Owner/Dashboard/OwnerDashboardLayout";
 import ProjectManagement from "./features/Owner/Dashboard/ProjectManagement";
 import Review_Proposals from "./features/Owner/Dashboard/Review_Proposals";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import FreelancerLayout from "./features/Freelancer/FreelancerLayout";
-import FreelanceDashboardLayout from "./features/Freelancer/Dashboard/FreelanceDashboardLayout";
-import ProposalManageMent from "./features/Freelancer/Dashboard/ProposalManageMent";
-import ProjectLists from "./features/Freelancer/ProjectLists";
-import SingleProjectData from "./features/Freelancer/SingleProjectData";
-import AboutUs from "./pages/AboutUs";
-import Not_Found from "./pages/Not_Found";
-import Guide_line from "./pages/Guide_line";
-import AdminLayout from "./features/Admin/dashboard/AdminLayout";
-import AdminDashBoardLayout from "./features/Admin/dashboard/AdminDashBoardLayout";
-import UserManageMent from "./features/Admin/dashboard/UserManageMent";
+import NewProject from "./features/Owner/NewProject";
+import OwnerLayout from "./features/Owner/OwnerLayout";
 import ProtectedRoute from "./features/ProtectedRoute/ProtectedRoute";
-import { CookiesProvider } from "react-cookie";
+import "./index.css";
+import AboutUs from "./pages/AboutUs";
+import Guide_line from "./pages/Guide_line";
+import HomePage from "./pages/HomePage";
+import Not_Found from "./pages/Not_Found";
+import SubMobileMenu from "./pages/SubMobileMenu";
 const queryClient = new QueryClient();
 function App() {
   AOS.init({
@@ -36,7 +35,7 @@ function App() {
   });
   return (
     <QueryClientProvider client={queryClient}>
-      <CookiesProvider defaultSetOptions={{ path: "/" }}>
+
         <ToastContainer rtl={true} />
         <Routes>
           <Route path="/" element={<AuthContianer />}></Route>
@@ -143,7 +142,7 @@ function App() {
             </Route>
           </Route>
         </Routes>
-      </CookiesProvider>
+
     </QueryClientProvider>
   );
 }
