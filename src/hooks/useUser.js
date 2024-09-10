@@ -5,8 +5,14 @@ const useUser = () => {
   const { data, isPending: isUserLoading } = useQuery({
     queryKey: ["user"],
     queryFn: getUserProfileApi,
+    
   });
-  const { user } = data || {};
+  let user;
+  if(data === undefined){
+    user = null
+  }else{
+    user  = data?.user 
+  }
   return { user, isUserLoading };
 };
 export default useUser;

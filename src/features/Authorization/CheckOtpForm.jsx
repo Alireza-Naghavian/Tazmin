@@ -1,72 +1,60 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import OtpInput from "react-otp-input";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import LargeBtn from "../../ui/LargeBtn";
 import Loader from "../../ui/Loader";
 import useCheckOtp from "./hooks/useCheckOtp";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import useSendOtp from "./hooks/useSendOtp";
-import useCountDownTimer from "./hooks/useCountDownTimer";
-import { useCookies } from "react-cookie";
-function CheckOtpForm({ setStep, phoneNumber, resendOtp, minutes, seconds }) {
-  const [cookies,setCookie] = useCookies(["userLogin"]);
-  const {
-    minutes: resendMinutes,
-    seconds: resendSeconds,
-    setMinutes,
-    setSeconds,
-  } = useCountDownTimer();
-  const editPhoneHandler =()=>{
-    setStep(1)
-    setMinutes(0);
-    setSeconds(0);
-  }
+import { convertToEnglishDigits } from "../../utils/ToEnDigits";
+function CheckOtpForm({
+  setStep,
+  phoneNumber,
+  startCountDown,
+  isActive,
+  minutes,
+  seconds,
+}) {
+  const editPhoneHandler = () => {
+    setStep(1);
+  };
   const { handleSubmit } = useForm();
   const navigate = useNavigate();
   const { checkOtp, isCheckLoading } = useCheckOtp();
   const { sendUserOtp } = useSendOtp();
   const [otp, setOtp] = useState("");
-  const setCookieHandler = ()=>{
-    const exp = new Date();
-    exp.setDate(exp.getDate() + 2);
-    setCookie("userLogin","userLoggedIn" , {path:"/",expires:exp})
-  }
+  const validPhoneNumber = convertToEnglishDigits(phoneNumber);
+  const validOtp = convertToEnglishDigits(otp)
   const resendHandler = async () => {
     await sendUserOtp(
-      { phoneNumber },
+      { phoneNumber:validPhoneNumber },
       {
         onSuccess: () => {
-          setMinutes(1);
-          setSeconds(59);
+          setOtp("")
+          startCountDown();
         },
       }
     );
   };
   const chackOtpHandler = async () => {
-    setMinutes(1);
-    setSeconds(59);
+
     try {
-      const data = await checkOtp({ phoneNumber, otp });
-      if(data.message.success) {
-        setCookieHandler();
-      }
+      const data = await checkOtp({ phoneNumber:validPhoneNumber, otp:validOtp });
       if (data.message.success === false) {
         throw new Error(JSON.stringify(data.message.message));
       }
       if (data.user.isActive) {
-        return navigate("/home", { replace: true });
+        return navigate("/", { replace: true });
       }
       if (!data.user.isActive) {
         return navigate("/complete-profile", { replace: true });
       }
-      return toast.success([data.message.message]);
     } catch (error) {
-      console.log(error);
       if (!error.response) {
         toast.error(JSON.parse(error.message));
       } else {
-        toast.error(error.response.data.message);
+        toast.error(error?.response?.data?.message);
       }
     }
   };
@@ -82,7 +70,7 @@ function CheckOtpForm({ setStep, phoneNumber, resendOtp, minutes, seconds }) {
           کد پیامک‌ شده به شماره موردنظر را وارد کنید.
         </span>
         <button
-          onClick={() =>editPhoneHandler()}
+          onClick={() => editPhoneHandler()}
           className="w-fit text-primary-900 text-sm leading-4 font-Dana"
         >
           تغییر شماره موبایل
@@ -97,7 +85,7 @@ function CheckOtpForm({ setStep, phoneNumber, resendOtp, minutes, seconds }) {
           onChange={setOtp}
           numInputs={6}
           renderSeparator={<span></span>}
-          renderInput={(props) => <input type="number" {...props} />}
+          renderInput={(props) => <input type="tel" {...props} inputMode="numeric" />}
           containerStyle={{
             width: "100%",
             position: "relative",
@@ -129,27 +117,26 @@ function CheckOtpForm({ setStep, phoneNumber, resendOtp, minutes, seconds }) {
         </LargeBtn>
       </form>
       <div className="w-full justify-center flex items-center z-50">
-        {(seconds && seconds > 0) || (minutes && minutes > 0) ? (
-          <p className="font-DanaMedium text-primary-900 w-fit text-center self-center ">
-            مانده تا ارسال مجدد:
-            {minutes < 10 ? `0${minutes}` : minutes}:
-            {seconds < 10 ? `0${seconds}` : seconds}
-          </p>
-        ) : (resendSeconds && resendSeconds > 0) ||
-            (resendMinutes && resendMinutes > 0) ? (
-          <p className="font-DanaMedium text-primary-900 w-fit text-center self-center ">
-            مانده تا ارسال مجدد:
-            {resendMinutes < 10 ? `0${resendMinutes}` : resendMinutes}:
-            {resendSeconds < 10 ? `0${resendSeconds}` : resendSeconds}
-          </p>
-        ) : (
-          <div
-            onClick={resendHandler}
-            className="cursor-pointer font-DanaMedium text-primary-900 w-fit text-center self-center"
-          >
-            ارسال مجدد کد تایید
-          </div>
-        )}
+        <p
+          className={`${!isActive && "hidden"}
+            font-DanaMedium
+           text-primary-900 w-fit text-center
+            self-center`}
+        >
+          <span>
+            {seconds && seconds < 10 ? `0${seconds}` : seconds} :
+            {minutes && minutes < 10 ? `0${minutes}` : minutes}
+          </span>
+          <span>مانده تا ارسال مجدد</span>
+        </p>
+
+        <div
+          onClick={resendHandler}
+          className={`${isActive ? "hidden" : " self-center text-center  "}
+              cursor-pointer font-DanaMedium
+               text-primary-900 w-fit  `}>
+          ارسال مجدد کد تایید
+        </div>
       </div>
     </div>
   );

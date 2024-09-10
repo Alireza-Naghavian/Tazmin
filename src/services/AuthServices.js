@@ -13,16 +13,16 @@ export const completeProfileApi = (data) => {
     .post("/user/complete-profile", data)
     .then(({ data }) => data.data);
 };
-export const getUserProfileApi = () => {
-  return http.get("/user/profile").then(({ data }) => data.data);
+export const getUserProfileApi =async () => {
+
+   return await http.get("/user/refresh-token").then(({data})=>data.data).catch(err=>err)
+
+
+
 };
 export const UpdateUserProfileApi = (data) => {
   return http.patch("/user/update",data).then(({ data }) => data.data);
 };
 export const logOutUserProfileApi = () => {
   return http.post("/user/logout").then(({ data }) => data.data);
-};
-
-export const getUserTokenApi = () => {
-  return http.get("/user/refresh-token").then(({ data }) => data.data);
 };

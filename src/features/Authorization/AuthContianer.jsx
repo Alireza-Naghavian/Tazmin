@@ -1,25 +1,19 @@
-import { useEffect, useState } from "react";
-import Auth from "../../pages/Auth";
-import SendOtpForm from "./SendOtpForm";
-import CheckOtpForm from "./CheckOtpForm";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import useSendOtp from "./hooks/useSendOtp";
-import useCountDownTimer from "./hooks/useCountDownTimer";
 import { toast } from "react-toastify";
-import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router";
+import useCountDownTimer from "../../hooks/useCountTimeTimer";
+import Auth from "../../pages/Auth";
+import CheckOtpForm from "./CheckOtpForm";
+import useSendOtp from "./hooks/useSendOtp";
+import SendOtpForm from "./SendOtpForm";
+import { convertToEnglishDigits } from "../../utils/ToEnDigits";
 function AuthContianer() {
   const [step, setStep] = useState(1);
   const { isSendLoading, error, sendUserOtp } = useSendOtp();
-  const [cookies] = useCookies(["userLogin"]);
-  const { userLogin } = cookies;
-  const { setMinutes, setSeconds, minutes, seconds } = useCountDownTimer();
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (userLogin) {
-      navigate("/home", { replace: true });
-    }
-  }, [cookies.userLogin, navigate]);
+  const { isActive, minutes, seconds, startCountDown } = useCountDownTimer(
+    2,
+    0
+  );
   const {
     register,
     handleSubmit,
@@ -27,17 +21,17 @@ function AuthContianer() {
     getValues,
   } = useForm();
   const sendOtpHandler = async (data) => {
+    const {phoneNumber} = data
+    const validPhoneNumber = convertToEnglishDigits(phoneNumber);
     try {
-      await sendUserOtp(data, {
+      await sendUserOtp({phoneNumber:validPhoneNumber}, {
         onSuccess: () => {
           setStep(2);
-          setMinutes(1);
-          setSeconds(59);
+          startCountDown();
         },
       });
     } catch (error) {
       toast.error(error?.response?.data?.message);
-      location.reload();
     }
   };
 
@@ -58,10 +52,12 @@ function AuthContianer() {
         return (
           <Auth>
             <CheckOtpForm
+              isActive={isActive}
               minutes={minutes}
               seconds={seconds}
               phoneNumber={getValues("phoneNumber")}
               setStep={setStep}
+              startCountDown={startCountDown}
               resendOtp={sendOtpHandler}
             />
           </Auth>

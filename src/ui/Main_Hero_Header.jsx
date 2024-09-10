@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
-import Small_Blue_base_Btn from "./Small_Blue_base_Btn";
-import { Swiper, SwiperSlide } from "swiper/react";
-import Swiper_Large_Slider from "./Swiper_SLider";
-import Home_slogans from "./Home_slogans";
 import Home_Desktop_Slogans from "./Home_Desktop_Slogans";
+import Home_slogans from "./Home_slogans";
+import Small_Blue_base_Btn from "./Small_Blue_base_Btn";
+import Swiper_Large_Slider from "./Swiper_SLider";
 
 function Main_Hero_Header({ user, isUserLoading }) {
   return (
@@ -29,19 +28,21 @@ function Main_Hero_Header({ user, isUserLoading }) {
           باشید.
         </p>
         {user?.role === "FREELANCER" ? (
-          <Link to={"/freelancer/projectLists"}>
+          <Link className="md:!inline-block" to={"/freelancer/projectLists"}>
             <Small_Blue_base_Btn>لیست پروژه ها</Small_Blue_base_Btn>
           </Link>
         ) : user?.role === "OWNER" ? (
-          <Link to={"/owner/new-project"} >
+          <Link className="md:!inline-block" to={"/owner/new-project"} >
             <Small_Blue_base_Btn>ایجاد سریع پروژه</Small_Blue_base_Btn>
           </Link>
         ) : user?.role === "ADMIN" ? (
-          <Link to={"/admin"}>
+          <Link className="md:!inline-block" to={"/admin"}>
             <Small_Blue_base_Btn>ورود به پنل ادمین</Small_Blue_base_Btn>
           </Link>
         ) : (
-          ""
+          <Link className="md:!inline-block" to={"/freelancer/projectLists"}>
+         <Small_Blue_base_Btn>لیست پروژه ها</Small_Blue_base_Btn>
+        </Link>
         )}
         <div className="flex items-center justify-center gap-x-2 px-4 py-px rounded-2xl md:w-fit w-max mx-auto md:mx-0 -mt-10 gap-4 mb-[100px] font-Dana bg-[#F3F2F0]">
           <svg

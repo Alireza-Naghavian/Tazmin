@@ -1,14 +1,12 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { FiBriefcase } from "react-icons/fi";
+import { LuMonitor } from "react-icons/lu";
+import { useNavigate } from "react-router-dom";
 import Auth from "../../pages/Auth";
 import Large_Text_Field from "../../ui/Large_Text_Field";
-import { useForm } from "react-hook-form";
-import { LuMonitor } from "react-icons/lu";
-import { FiBriefcase } from "react-icons/fi";
-import LargeBtn from "../../ui/LargeBtn";
-import useCompleteProfile from "./hooks/useCompleteProfile";
-import { useNavigate } from "react-router-dom";
 import Loader from "../../ui/Loader";
-import { toast } from "react-toastify";
+import useCompleteProfile from "./hooks/useCompleteProfile";
 
 function CompleteProfile() {
   const [roleChecked, setRoleChecked] = useState("");
@@ -23,7 +21,7 @@ function CompleteProfile() {
   const submitHandler = (data) => {
     completeProfile(data, {
       onSuccess: () => {
-        navigate("/home", { replace: true });
+        navigate("/", { replace: true });
       },
     });
   };

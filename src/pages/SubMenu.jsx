@@ -23,9 +23,9 @@ function SubMenu({
         <div className="flex flex-col gap-5 font-DanaBold z-20 text-black_base">
           <Link
             to={`${
-              user && isOwnerActive
+               isOwnerActive
                 ? "/owner/new-project"
-                : user && isFreelanceActive
+                : isFreelanceActive
                 ? "/freelancer/projectLists"
                 : ""
             }`}
@@ -81,7 +81,6 @@ const AccessLink = ({
   linkItem,
   linkDesc,
 }) => {
-  console.log(user);
   return (
     <Link
       to={`${

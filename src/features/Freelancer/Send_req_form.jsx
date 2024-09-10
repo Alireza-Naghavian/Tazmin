@@ -23,7 +23,6 @@ function Send_req_form({ setIsOpen, projectId }) {
     let validData = {
         duration,price:sanitizedValue,description
     }
-   console.log({...validData,projectId});
    sendProposal({projectId,...validData},{onSuccess:()=>{
     setIsOpen(false)
    }})
