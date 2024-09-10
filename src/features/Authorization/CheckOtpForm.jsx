@@ -85,7 +85,7 @@ function CheckOtpForm({
           onChange={setOtp}
           numInputs={6}
           renderSeparator={<span></span>}
-          renderInput={(props) => <input type="number" {...props} />}
+          renderInput={(props) => <input type="tel" {...props} inputMode="numeric" />}
           containerStyle={{
             width: "100%",
             position: "relative",
