@@ -1,16 +1,10 @@
-import React, { useEffect } from "react";
-import Modal from "../../ui/Modal";
-import { useMutation } from "@tanstack/react-query";
-import { logOutUserProfileApi } from "../../services/AuthServices";
-import Loader from "../../ui/Loader";
-import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
+import React from "react";
 import useLogout from "../../hooks/useLogout";
+import Modal from "../../ui/Modal";
 
 function LogOut({ isOpen, setIsOpen }) {
- const {LogOut,setCookieHandler} =  useLogout()
+ const {LogOut} =  useLogout()
   const logOutHandler = () => {
-    setCookieHandler()
     LogOut();
   };
 

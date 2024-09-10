@@ -1,6 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
 import { CheckOtpApi } from "../../../services/AuthServices";
-import { toast } from "react-toastify";
 
 const useCheckOtp = () => {
   

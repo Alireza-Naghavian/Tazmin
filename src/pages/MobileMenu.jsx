@@ -21,10 +21,9 @@ function MobileMenu() {
         </div>
         {/* mobile nav-item */}
         <Link
-          onClick={(e) => user?.role === "FREELANCER" && e.preventDefault()}
-          to={"/owner/m_menu"}
+          to={`${user===undefined || user?.role=== "FREELANCER" ? "#":"/owner/m_menu"}`}
           className={`flex justify-between items-center gap-2 py-4 px-2 ${
-            user.role === "FREELANCER" && "cursor-not-allowed opacity-50"
+            user?.role === "FREELANCER" || !user && "cursor-not-allowed opacity-50"
           }`}
         >
           <div className="flex gap-x-2 ">
@@ -37,10 +36,9 @@ function MobileMenu() {
         </Link>
         <hr className="h-[2px] w-full bg-white/40" />
         <Link
-          to={"/freelancer/m_menu"}
-          onClick={(e) => user?.role === "OWNER" && e.preventDefault()}
+          to={`${user===undefined || user?.role  === "OWNER" ? "#" :"/freelancer/m_menu"}`}
           className={`flex justify-between items-center gap-2 py-4 px-2 ${
-            user.role === "OWNER" && "cursor-not-allowed opacity-50"
+            user?.role === "OWNER"|| !user && "cursor-not-allowed opacity-50"
           }`}
         >
           <div className="flex gap-x-2 ">
