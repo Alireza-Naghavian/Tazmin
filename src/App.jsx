@@ -27,6 +27,7 @@ import Guide_line from "./pages/Guide_line";
 import HomePage from "./pages/HomePage";
 import Not_Found from "./pages/Not_Found";
 import SubMobileMenu from "./pages/SubMobileMenu";
+import ScrollToTop from "./utils/ScrollToTop";
 const queryClient = new QueryClient();
 function App() {
   AOS.init({
@@ -36,6 +37,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ToastContainer rtl={true} />
+      <ScrollToTop/>
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
         <Route path="complete-profile" element={<CompleteProfile />} />
