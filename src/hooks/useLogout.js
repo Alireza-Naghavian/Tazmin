@@ -1,16 +1,11 @@
-import { useMutation } from "@tanstack/react-query";
-import { useCookies } from "react-cookie";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 import { logOutUserProfileApi } from "../services/AuthServices";
 
 const useLogout = ()=>{
-    const [cookies,setCookie] = useCookies(["userLogin"]);
+
+    const queryClient = useQueryClient();
     const navigate = useNavigate();
-    const setCookieHandler = ()=>{
-        const exp = new Date();
-        exp.setDate(exp.getDate() - 2);
-        setCookie("userLogin","userLoggedIn" , {path:"/",expires:exp})
-      }
       const { mutateAsync: LogOut } = useMutation({
         mutationFn: logOutUserProfileApi,
         onSuccess: () => {
