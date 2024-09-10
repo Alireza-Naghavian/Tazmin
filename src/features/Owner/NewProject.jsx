@@ -1,8 +1,4 @@
-import { Outlet } from "react-router-dom"
-import Header from "../../pages/Header"
 import NewProjectLayout from "./NewProjectLayout"
-import Footer from "../../ui/Footer"
-
 function NewProject() {
   return (
     <div>
