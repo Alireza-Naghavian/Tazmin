@@ -1,6 +1,6 @@
 import http from "./httpServices";
 
-export const getUserListApi = () => {
+export const getUserListApi = async() => {
     return http.get("admin/user/list").then(({ data }) => data.data);
   };
   export const changeVerifyStatusApi = ({ userId, data }) => {

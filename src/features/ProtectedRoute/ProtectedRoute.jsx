@@ -2,17 +2,19 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../ui/Loader";
 import useAuthorize from "./hooks/useAuthorize";
+import useUser from "../../hooks/useUser";
 
 function ProtectedRoute({ children }) {
   const navigate = useNavigate();
-  // const [cookies] = useCookies();
-  const { isAuthenticated, isAuthorized, isUserLoading, isVerified } =useAuthorize();
+  const { user, isUserLoading } = useUser();
+  const { isAuthenticated, isAuthorized, isVerified } = useAuthorize();
+
   useEffect(() => {
-    if (!isAuthenticated && !isUserLoading) navigate("/");
-    // if(!cookies.userLogin) navigate("/",{replace:true})
-    if (!isVerified && !isUserLoading) navigate("/not-access");
-    if (isAuthorized && !isUserLoading) navigate("/note-access");
-  }, [navigate, isAuthenticated, isAuthorized]);
+    if (user === undefined && !isVerified && !isUserLoading)
+      navigate("/not-access");
+    if (user !== undefined && isAuthorized && !isUserLoading)
+      navigate("/note-access");
+  }, [navigate, isVerified, user, isUserLoading]);
   if (isUserLoading)
     return (
       <div className="flex items-center justify-center h-screen bg-secondary-100">

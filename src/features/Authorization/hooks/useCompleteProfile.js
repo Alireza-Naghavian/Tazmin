@@ -3,7 +3,6 @@ import { completeProfileApi } from "../../../services/AuthServices";
 import { toast } from "react-toastify"
 const useCompleteProfile = () => {
 const {mutate:completeProfile , isPending:isProfileLoading} =  useMutation({
-    mutationKey: ["user"],
     mutationFn: completeProfileApi,
     onSuccess:(data)=>{
         toast.success(data.message,{

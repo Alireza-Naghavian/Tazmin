@@ -27,6 +27,7 @@ import Guide_line from "./pages/Guide_line";
 import HomePage from "./pages/HomePage";
 import Not_Found from "./pages/Not_Found";
 import SubMobileMenu from "./pages/SubMobileMenu";
+import ScrollToTop from "./utils/ScrollToTop";
 const queryClient = new QueryClient();
 function App() {
   AOS.init({
@@ -35,114 +36,162 @@ function App() {
   });
   return (
     <QueryClientProvider client={queryClient}>
-
-        <ToastContainer rtl={true} />
-        <Routes>
-          <Route path="/" element={<AuthContianer />}></Route>
-          <Route path="complete-profile" element={<CompleteProfile />} />
-          <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
-          <Route path="/about-us" element={<ProtectedRoute><AboutUs /></ProtectedRoute>} />
-          <Route path="*" element={<ProtectedRoute><Not_Found /></ProtectedRoute>} />
-          <Route path="/guide-line" element={<ProtectedRoute><Guide_line /></ProtectedRoute>} />
+      <ToastContainer rtl={true} />
+      <ScrollToTop/>
+      <Routes>
+        <Route path="/" element={<HomePage />}></Route>
+        <Route path="complete-profile" element={<CompleteProfile />} />
+        <Route path="/register-login" element={<AuthContianer />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="*" element={<Not_Found />} />
+        <Route path="/guide-line" element={<Guide_line />} />
+        <Route
+          path="/owner/m_menu"
+          element={
+            <SubMobileMenu
+              role={"کارفرمایان"}
+              main_action={"ایجاد پروژه"}
+              base_color={"border-blue_base"}
+              second_item={"مشاهده پروژه های ایجاد شده"}
+              last_item={"مشاهده درخواست های  فریلنسر ها"}
+              target_link_1={"/owner/new-project"}
+              target_link_2={"/owner"}
+            />
+          }
+        />
+        <Route
+          path="freelancer/m_menu"
+          element={
+            <SubMobileMenu
+              role={"فریلنسر ها"}
+              main_action={"ارسال پیشنهاد"}
+              base_color={"border-error"}
+              second_item={"مشاهده درخواست ها ارسال شده"}
+              last_item={"مشاهده پروژه های کارفرمایان"}
+              target_link_1={"/freelancer/projectLists"}
+              target_link_2={"/freelancer"}
+            />
+          }
+        />
+        <Route path="/owner" element={<OwnerLayout />}>
           <Route
-            path="/owner/m_menu"
+            index
             element={
               <ProtectedRoute>
-
-              <SubMobileMenu
-                role={"کارفرمایان"}
-                main_action={"ایجاد پروژه"}
-                base_color={"border-blue_base"}
-                second_item={"مشاهده پروژه های ایجاد شده"}
-                last_item={"مشاهده درخواست های  فریلنسر ها"}
-                target_link_1={"/owner/new-project"}
-                target_link_2={"/owner"}
-                />
-                </ProtectedRoute>
+                <Navigate to="dashboard" />
+              </ProtectedRoute>
             }
           />
+
           <Route
-            path="freelancer/m_menu"
+            path="dashboard"
             element={
               <ProtectedRoute>
-              <SubMobileMenu
-                role={"فریلنسر ها"}
-                main_action={"ارسال پیشنهاد"}
-                base_color={"border-error"}
-                second_item={"مشاهده درخواست ها ارسال شده"}
-                last_item={"مشاهده پروژه های کارفرمایان"}
-                target_link_1={"/freelancer/projectLists"}
-                target_link_2={"/freelancer"}
-                />
-                </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/owner"
-            element={
-              <ProtectedRoute>
-                <OwnerLayout />
+                <OwnerDashboardLayout />
               </ProtectedRoute>
             }
           >
-            <Route index element={<Navigate to="dashboard" />} />
-            <Route path="dashboard" element={<OwnerDashboardLayout />}>
-              <Route
-                index
-                element={<Navigate to={"project-management"} replace />}
-              />
-              <Route
-                path="project-management"
-                element={<ProjectManagement />}
-              />
-              <Route
-                path="review-proposals/:id"
-                element={<Review_Proposals />}
-              />
-            </Route>
-            <Route path="new-project" element={<NewProject />} />
-          </Route>
-          <Route
-            path="/freelancer"
-            element={
-              <ProtectedRoute>
-                <FreelancerLayout />{" "}
-              </ProtectedRoute>
-            }
-          >
-            <Route index element={<Navigate to={"freelance-dashboard"} />} />
             <Route
-              path="freelance-dashboard"
-              element={<FreelanceDashboardLayout />}
-            >
-              <Route
-                index
-                element={<Navigate to={"proposal-management"} replace />}
-              />
-              <Route
-                path="proposal-management"
-                element={<ProposalManageMent />}
-              />
-            </Route>
-            <Route index element={<Navigate to={"projectLists"} />} />
-            <Route path="projectLists" element={<ProjectLists />}></Route>
-            <Route path="projectLists/:id" element={<SingleProjectData />} />
+              index
+              element={
+                <ProtectedRoute>
+                  <Navigate to={"project-management"} replace />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="project-management"
+              element={
+                <ProtectedRoute>
+                  <ProjectManagement />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="review-proposals/:id"
+              element={
+                <ProtectedRoute>
+                  <Review_Proposals />
+                </ProtectedRoute>
+              }
+            />
           </Route>
+          <Route path="/owner/new-project" element={<NewProject />} />
+        </Route>
+        <Route path="/freelancer" element={<FreelancerLayout />}>
           <Route
-            path="/admin"
+            index
             element={
               <ProtectedRoute>
-                <AdminLayout />
+                <Navigate to={"freelance-dashboard"} />{" "}
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="freelance-dashboard"
+            element={
+              <ProtectedRoute>
+                <FreelanceDashboardLayout />{" "}
               </ProtectedRoute>
             }
           >
-            <Route index element={<Navigate to={"dashboard"} />} />
-            <Route path="dashboard" element={<AdminDashBoardLayout />}>
-              <Route index element={<UserManageMent />} />
-            </Route>
+            <Route
+              index
+              element={
+                <ProtectedRoute>
+                  <Navigate to={"proposal-management"} replace />{" "}
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="proposal-management"
+              element={
+                <ProtectedRoute>
+                  <ProposalManageMent />{" "}
+                </ProtectedRoute>
+              }
+            />
           </Route>
-        </Routes>
-
+          <Route index element={<Navigate to={"projectLists"} />} />
+          <Route path="projectLists" element={<ProjectLists />}></Route>
+          <Route path="projectLists/:id" element={<SingleProjectData />} />
+        </Route>
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route
+            index
+            element={
+              <ProtectedRoute>
+                <Navigate to={"dashboard"} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="dashboard"
+            element={
+              <ProtectedRoute>
+                <AdminDashBoardLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route
+              index
+              element={
+                <ProtectedRoute>
+                  <UserManageMent />
+                </ProtectedRoute>
+              }
+            />
+          </Route>
+        </Route>
+      </Routes>
     </QueryClientProvider>
   );
 }

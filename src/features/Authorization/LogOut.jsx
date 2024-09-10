@@ -3,9 +3,8 @@ import useLogout from "../../hooks/useLogout";
 import Modal from "../../ui/Modal";
 
 function LogOut({ isOpen, setIsOpen }) {
- const {LogOut,setCookieHandler} =  useLogout()
+ const {LogOut} =  useLogout()
   const logOutHandler = () => {
-    setCookieHandler()
     LogOut();
   };
 

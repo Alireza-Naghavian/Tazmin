@@ -10,6 +10,7 @@ import { useSpring, animated } from "@react-spring/web";
 import { IoChevronDown } from "react-icons/io5";
 import Pr_Lists from "./Pr_Lists";
 import LargeBtn from "../../ui/LargeBtn";
+import Overlay from "../../ui/OverLay";
 function ProjectLists() {
   const { projects, projectsLoading } = useGetAllProjects();
   const { transformedCategories } = useGetAllCategories();
@@ -23,7 +24,7 @@ function ProjectLists() {
   const filterAnimation = useSpring({
     opacity: 1,
     config: { delay: 0, duration: 300 },
-    transform: openFilter ? "translateY(0rem)" : "translateY(100rem)",
+    transform: openFilter ? "translateY(10rem)" : "translateY(100rem)",
   });
   const sortOption = [
     {
@@ -41,6 +42,8 @@ function ProjectLists() {
     { label: "پروژه های بسته", value: "CLOSED" },
   ];
   return (
+    <>
+    <Overlay onClose={()=>setOpenFilter(false)} openCondition={openFilter}/>
     <div className="container  sm:px-16 px-4  pt-12  pb-9 max-w-[1024px]">
       <div className="flex items-center  md:justify-between justify-around    ">
         <div className="self-end mb-2 md:self-auto">
@@ -86,7 +89,7 @@ function ProjectLists() {
           </div>
           {
             <animated.div
-              className="bottom-sheet overflow-y-auto"
+              className="bottom-sheet overflow-y-auto "
               style={filterAnimation}>
               <Button_Sheet sheetTitle={"مرتب سازی بر اساس"} setOpenSheet={setOpenFilter}>
                 <div className=" w-full">
@@ -148,6 +151,8 @@ function ProjectLists() {
         )}
       </div>
     </div>
+    </>
+
   );
 }
 
