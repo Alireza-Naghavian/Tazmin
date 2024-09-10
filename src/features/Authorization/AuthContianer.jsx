@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import useCountDownTimer from "../../hooks/useCountTimeTimer";
 import Auth from "../../pages/Auth";
 import CheckOtpForm from "./CheckOtpForm";
 import useSendOtp from "./hooks/useSendOtp";
 import SendOtpForm from "./SendOtpForm";
-import useCountDownTimer from "../../hooks/useCountTimeTimer";
+import { convertToEnglishDigits } from "../../utils/ToEnDigits";
 function AuthContianer() {
   const [step, setStep] = useState(1);
   const { isSendLoading, error, sendUserOtp } = useSendOtp();
@@ -14,7 +14,6 @@ function AuthContianer() {
     2,
     0
   );
-  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -22,8 +21,10 @@ function AuthContianer() {
     getValues,
   } = useForm();
   const sendOtpHandler = async (data) => {
+    const {phoneNumber} = data
+    const validPhoneNumber = convertToEnglishDigits(phoneNumber);
     try {
-      await sendUserOtp(data, {
+      await sendUserOtp({phoneNumber:validPhoneNumber}, {
         onSuccess: () => {
           setStep(2);
           startCountDown();
@@ -31,7 +32,6 @@ function AuthContianer() {
       });
     } catch (error) {
       toast.error(error?.response?.data?.message);
-      // location.reload();
     }
   };
 
@@ -52,7 +52,7 @@ function AuthContianer() {
         return (
           <Auth>
             <CheckOtpForm
-            isActive={isActive}
+              isActive={isActive}
               minutes={minutes}
               seconds={seconds}
               phoneNumber={getValues("phoneNumber")}

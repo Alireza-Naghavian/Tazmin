@@ -7,6 +7,7 @@ import LargeBtn from "../../ui/LargeBtn";
 import Loader from "../../ui/Loader";
 import useCheckOtp from "./hooks/useCheckOtp";
 import useSendOtp from "./hooks/useSendOtp";
+import { convertToEnglishDigits } from "../../utils/ToEnDigits";
 function CheckOtpForm({
   setStep,
   phoneNumber,
@@ -23,19 +24,23 @@ function CheckOtpForm({
   const { checkOtp, isCheckLoading } = useCheckOtp();
   const { sendUserOtp } = useSendOtp();
   const [otp, setOtp] = useState("");
+  const validPhoneNumber = convertToEnglishDigits(phoneNumber);
+  const validOtp = convertToEnglishDigits(otp)
   const resendHandler = async () => {
     await sendUserOtp(
-      { phoneNumber },
+      { phoneNumber:validPhoneNumber },
       {
         onSuccess: () => {
+          setOtp("")
           startCountDown();
         },
       }
     );
   };
   const chackOtpHandler = async () => {
+
     try {
-      const data = await checkOtp({ phoneNumber, otp });
+      const data = await checkOtp({ phoneNumber:validPhoneNumber, otp:validOtp });
       if (data.message.success === false) {
         throw new Error(JSON.stringify(data.message.message));
       }
