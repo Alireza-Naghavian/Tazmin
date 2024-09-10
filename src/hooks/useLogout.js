@@ -10,8 +10,8 @@ const useLogout = ()=>{
         mutationFn: logOutUserProfileApi,
         onSuccess: () => {
           queryClient.invalidateQueries({queryKey:["user"]})
-          navigate(0)
           navigate("/");
+          navigate(0)
         },
       });
       return {LogOut}

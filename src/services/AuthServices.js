@@ -14,13 +14,11 @@ export const completeProfileApi = (data) => {
     .then(({ data }) => data.data);
 };
 export const getUserProfileApi =async () => {
-try {
-  return  await http.get("/user/refresh-token").then(({data})=>data.data);
+
+   return await http.get("/user/refresh-token").then(({data})=>data.data).catch(err=>err)
 
 
-} catch (error) {
-  console.log(error);
-}
+
 };
 export const UpdateUserProfileApi = (data) => {
   return http.patch("/user/update",data).then(({ data }) => data.data);

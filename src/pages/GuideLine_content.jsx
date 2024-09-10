@@ -7,9 +7,6 @@ function GuideLine_content() {
             <div className="h-[300px] max-h-[350px] px-4  my-auto w-full flex items-center justify-center flex-col gap-y-12">
                 <div className=" flex flex-col  items-center ">
                     <h3 className='font-DanaBold my-auto sm:text-3xl text-xl text-center  text-black_base'>چطوری شروع کنم؟</h3>
-                    <span className="font-DanaMedium text-error tracking-tighter sm:text-lg  text-center mt-6">نکته مهم: اگر به تازگی در وبسایت ثبت نام کرده اید ، باید منتظر تایید اکانت خود از 
-                    سمت ادمین باشید.</span>
-                    <span className='font-DanaMedium text-error tracking-tight mt-2 sm:text-lg  text-center '>در غیر اینصورت قادر به استفاده از امکانات سایت نخواهید بود.</span>
                 </div>
             </div>
             <div className="  px-2 md:px-0 w-full">
