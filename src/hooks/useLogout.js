@@ -3,9 +3,9 @@ import { useNavigate } from "react-router";
 import { logOutUserProfileApi } from "../services/AuthServices";
 
 const useLogout = ()=>{
-    const navigate = useNavigate();
-    const queryClient = useQueryClient();
 
+    const queryClient = useQueryClient();
+    const navigate = useNavigate();
       const { mutateAsync: LogOut } = useMutation({
         mutationFn: logOutUserProfileApi,
         onSuccess: () => {
