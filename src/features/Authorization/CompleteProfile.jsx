@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FiBriefcase } from "react-icons/fi";
 import { LuMonitor } from "react-icons/lu";
@@ -7,10 +7,18 @@ import Auth from "../../pages/Auth";
 import Large_Text_Field from "../../ui/Large_Text_Field";
 import Loader from "../../ui/Loader";
 import useCompleteProfile from "./hooks/useCompleteProfile";
+import useUser from "../../hooks/useUser";
 
 function CompleteProfile() {
   const [roleChecked, setRoleChecked] = useState("");
   const navigate = useNavigate();
+  const { user } = useUser();
+  useEffect(() => {
+    if ((user !== undefined && user !== null) || user?.isActive === true) {
+      navigate("/", { replace: true });
+    }
+  }, [user, navigate]);
+
   const {
     handleSubmit,
     register,
@@ -111,7 +119,9 @@ function CompleteProfile() {
                   onClick={() => setRoleChecked("FREELANCER")}
                   className={`flex tr-300 freelance-backdrop flex-col gap-2 justify-center
                    items-center  my-auto absolute inset-0 z-20 ${
-                     roleChecked === "FREELANCER" ? "bg-blue_base/55" : "bg-white"
+                     roleChecked === "FREELANCER"
+                       ? "bg-blue_base/55"
+                       : "bg-white"
                    }`}
                 >
                   <label
