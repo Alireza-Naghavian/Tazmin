@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import useCountDownTimer from "../../hooks/useCountTimeTimer";
@@ -7,8 +7,18 @@ import CheckOtpForm from "./CheckOtpForm";
 import useSendOtp from "./hooks/useSendOtp";
 import SendOtpForm from "./SendOtpForm";
 import { convertToEnglishDigits } from "../../utils/ToEnDigits";
+import useUser from "../../hooks/useUser";
+import { useNavigate } from "react-router";
 function AuthContianer() {
   const [step, setStep] = useState(1);
+  const navigate = useNavigate();
+  const {user} = useUser();
+  useEffect(()=>{
+    if(user !==undefined && user !==null){
+      navigate("/",{replace:true})
+    
+    }
+  },[user,navigate])
   const { isSendLoading, error, sendUserOtp } = useSendOtp();
   const { isActive, minutes, seconds, startCountDown } = useCountDownTimer(
     2,
