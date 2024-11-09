@@ -7,9 +7,10 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import useLogout from "../../hooks/useLogout";
 import useUser from "../../hooks/useUser";
+import Text_loader from "../../ui/Text_loader";
 import truncateText from "../../utils/truncateText";
 function UserDataDropDown() {
-  const { user } = useUser();
+  const { user,isUserLoading } = useUser();
   const navigate = useNavigate();
   const { LogOut } = useLogout();
 
@@ -18,6 +19,7 @@ function UserDataDropDown() {
   };
   return (
     <div className=" w-fit mr-auto  text-right">
+      
       <Menu as="div" className="relative inline-block text-right">
         <div>
           <Menu.Button
@@ -28,7 +30,8 @@ function UserDataDropDown() {
                hover:text-black_base/70 focus:outline-none focus-visible:ring-2
                 focus-visible:ring-white/75"
           >
-            {!user ? (
+            {isUserLoading ? <div className="flex items-center"><Text_loader loadingCondition={isUserLoading}/></div> :
+            !user ? (
               <Link to={"/register-login"}>ورود / ثبت نام</Link>
             ) : (
               <>
