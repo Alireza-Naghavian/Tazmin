@@ -10,7 +10,7 @@ import Button_Sheet from '../../ui/Button_Sheet';
 import Send_req_form from './Send_req_form';
 function SingleProjectData() {
   const {id}= useParams();
-  const {project} = useGetSingleProject(id)
+  const {project,projectLoading} = useGetSingleProject(id)
   const [increment, setIncrement] = useState(3);
   const [openForm, setOpenForm] = useState(false);
   if (openForm) {
@@ -27,7 +27,7 @@ function SingleProjectData() {
     <div className=' relative  pt-12  pb-9 '>
       <div className="sm:px-14 px-4 ">
       <div className="w-full my-0 mx-auto max-w-[1200px] relative bg-white rounded-lg shadow-md border-t-8 border-t-blue_base ">
-      <ProjectOverView project={project}/>
+      <ProjectOverView projectLoading={projectLoading} project={project}/>
       </div>
       <div className="max-w-[1366px] mt-20 w-full flex flex-col">
         <h4 className='text-xl font-DanaBold text-black_base'>
