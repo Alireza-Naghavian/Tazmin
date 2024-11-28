@@ -8,13 +8,14 @@ import Large_Text_Field from "../../ui/Large_Text_Field";
 import Loader from "../../ui/Loader";
 import useCompleteProfile from "./hooks/useCompleteProfile";
 import useUser from "../../hooks/useUser";
+import Text_loader from "../../ui/Text_loader";
 
 function CompleteProfile() {
   const [roleChecked, setRoleChecked] = useState("");
   const navigate = useNavigate();
-  const { user } = useUser();
+  const { user,isUserLoading } = useUser();
   useEffect(() => {
-    if ((user !== undefined && user !== null) || user?.isActive === true) {
+    if (!isUserLoading && user && user?.isActive ) {
       navigate("/", { replace: true });
     }
   }, [user, navigate]);
@@ -33,7 +34,7 @@ function CompleteProfile() {
       },
     });
   };
-
+  if(isUserLoading) return <Text_loader className={"md:text-3xl text-xl mt-5 mr-2 "} loadingCondition={isUserLoading}/>
   return (
     <Auth>
       <div className="flex flex-col gap-8">
